@@ -49,17 +49,11 @@ MVPリリース時に作っていたいもの
 	- Googleアカウントでログイン
 	- Twitterアカウントでログイン
 
-可能であれば作りたいもの
-- 発表練習用の1分タイマー機能
-- 話す速度の評価機能
-
 ■ 機能の実装方針予定  
 - 入力した内容をもとに例文を自動作成
 	- ユーザーが入力した内容をもとに文章作成API(Chat-GPT)によって、結論(タイトル)⇒根拠(要素)⇒具体例(要素を選んだ理由)の順番に1分で話せる300文字以内の例文を自動作成する。
-- 話す速度の評価機能
-	- Web Speech APIによって音声を文章に変換。文章の文字数から話す速度が速いか遅いかを判定する。
 - ピラミッドストラクチャーの作成
 	- CSSを使用してピラミッド型の組織図を作成し、その中にユーザーが入力した結論、根拠、具体例を組織図の中に当てはめる。
 
 ■ 画面遷移図
-https://www.figma.com/file/OA3KPX1JYZhEjKBdgduN0M/one_minute_talk?type=design&mode=design&t=A8CyytyOxXpTDk7Y-1
+https://www.figma.com/file/OA3KPX1JYZhEjKBdgduN0M/one_minute_talk?type=design&node-id=0-1&mode=design&t=c6hOkAmQ9Rccpjr8-0
