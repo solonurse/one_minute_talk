@@ -23,5 +23,12 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # アプリケーションでの利用を許可するロケールのリストを渡す
+    
+    config.i18n.available_locales = %i[ja en]
+    # ロケールを:en以外に変更する
+    config.i18n.default_locale = :ja
+    # アプリケーションでの利用を許可するロケールのリストを渡す（設定必須）
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
