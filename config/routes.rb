@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'user_sessions/new'
-  get 'user_sessions/create'
-  get 'user_sessions/destroy'
-  resources :users
+  # get 'user_sessions/new'
+  # get 'user_sessions/create'
+  # get 'user_sessions/destroy'
+  # resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

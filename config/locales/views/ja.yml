@@ -1,7 +1,11 @@
 ja:
   defaults:
     register: '登録'
+    login: 'ログイン'
   users:
     new:
       title: 'ユーザー登録'
       to_login_page: 'ログインページへ'
+  user_sessions:
+    new:
+      password_reset: 'パスワードを忘れた方はこちら'
