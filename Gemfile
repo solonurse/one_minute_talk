@@ -56,6 +56,14 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   
   gem 'byebug'
+
+  gem 'letter_opener_web', '~> 2.0'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem "faker"
+  gem "rubocop", require: false
+  gem 'rubocop-rails', require: false
+  gem "rubocop-rspec", require: false
 end
 
 group :development do
@@ -73,6 +81,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'webdrivers'
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
