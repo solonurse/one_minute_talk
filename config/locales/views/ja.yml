@@ -6,6 +6,29 @@ ja:
     new:
       title: 'ユーザー登録'
       to_login_page: 'ログインページへ'
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
       password_reset: 'パスワードを忘れた方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
+  password_resets:
+    new:
+      title: 'パスワードリセット申請'
+      email: 'メールアドレス'
+      send_email: 'パスワード再設定メールを送信'
+    create:
+      success: 'メールを送信しました'
+    edit:
+      title: 'パスワードリセット'
+      new_password: '新しいパスワード'
+      reenter_password: 'パスワード再入力'
+      update_password: 'パスワードを更新する'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'

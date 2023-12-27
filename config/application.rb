@@ -30,5 +30,15 @@ module Myapp
     config.i18n.default_locale = :ja
     # アプリケーションでの利用を許可するロケールのリストを渡す（設定必須）
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+    config.generators do |g|
+      g.skip_routes true
+      g.helper false
+      g.test_framework :rspec,
+        fixtures: false, # テストDBにレコードを作るfixtureの作成をスキップ
+        view_specs: false, # ビューファイル用のスペックを作成しない
+        helper_specs: false, # ヘルパーファイル用のスペックを作成しない
+        routing_specs: false # routes.rb用のスペックファイル作成しない
+    end
   end
 end
