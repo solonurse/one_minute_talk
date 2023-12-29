@@ -2,6 +2,7 @@ ja:
   defaults:
     register: '登録'
     login: 'ログイン'
+    update: '更新する'
   users:
     new:
       title: 'ユーザー登録'
@@ -32,3 +33,9 @@ ja:
     update:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
+  profiles:
+    edit:
+      title: プロフィール編集
+    update:
+      updated: 'プロフィールを更新しました'
+      update_failed: 'プロフィールの更新に失敗しました'
