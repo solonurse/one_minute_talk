@@ -1,0 +1,23 @@
+<section id="modal">
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto bg-secondary-subtle">
+        <h2 class="text-center pt-4">マイページ</h2>
+        <div class="text-center pt-1">ユーザー名</div>
+        <div class="text-center"><%= current_user.name %></div>
+        <div class="text-center pt-3">メールアドレス</div>
+        <div class="text-center"><%= current_user.email %></div>
+        <div class="text-center py-3">
+          <%= link_to '編集', edit_profile_path(current_user) %>
+        </div>
+        <div class='text-center pb-3'>
+          <%= link_to 'ログアウト', logout_path, class: "text-danger", data: { turbo_method: :delete } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center pt-4">
+    <button id="close">閉じる</button>
+  </div>
+</section>
+<div id="mask"></div>
