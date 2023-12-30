@@ -13,6 +13,7 @@ ja:
   user_sessions:
     new:
       password_reset: 'パスワードを忘れた方はこちら'
+      remember: 'ログイン状態を維持'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
