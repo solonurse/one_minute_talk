@@ -1,0 +1,21 @@
+#menu-open {
+  z-index: 4;
+  transition: .4s;
+}
+
+#menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 4;
+  translate: -100vw;
+}
+
+.menu-list {
+  list-style: none;
+}
+
+.menu-list li {
+  margin: .5rem 0;
+}
