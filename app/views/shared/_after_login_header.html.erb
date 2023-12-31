@@ -1,7 +1,8 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <%= render 'shared/slidebar' %>
     <div class="container-fluid">
-      <%= link_to 'ONE MINUTE TALK', memos_path, class: "navbar-brand fw-medium" %>
+      <%= link_to 'ONE MINUTE TALK', memos_path, class: "navbar-brand" %>
       <div class='d-flex'>
         <button type="button" id="open" class="btn btn-secondary me-2">マイページ</button>
         <%= link_to '新規作成', login_path, class: "sign_in me-2 btn btn-secondary" %>
