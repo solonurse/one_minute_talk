@@ -1,5 +1,30 @@
-<% if 1 == 2 %>
-  <h2 class="text-center mt-5">メモを選択してください</h2>
-<% else %>
-  <%= render 'shared/selected_memo' %>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 d-none d-lg-block border bg-body-tertiary">
+      <div class='h-100'>
+        <ul class="menu-list">
+          <div class="text-center py-4">
+          <%= link_to '新規作成', login_path, class: "sign_in btn btn-secondary" %>
+          </div>
+          <div class="border border-secondary w-100"></div>
+          <h4 class="py-3">ブックマーク済みのメモ</h4>
+          <li>リスト</li>
+          <li>リスト</li>
+          <li>リスト</li>
+          <div class="border border-secondary w-100"></div>
+          <h4 class="py-3">全てのメモ</h4>
+          <li>リスト</li>
+          <li>リスト</li>
+          <li>リスト</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-fluid bg-info col-lg-10" style="height: 100vh;">
+      <% if 1 != 2 %>
+        <h2 class="text-center mt-5">メモを選択してください</h2>
+      <% else %>
+        <%= render 'shared/selected_memo' %>
+      <% end %>
+    </div>
+  </div>
+</div>
