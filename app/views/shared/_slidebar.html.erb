@@ -1,11 +1,21 @@
-<div>
+<nav class="navbar d-lg-none bg-body-tertiary d-flex ms-2">
   <button id='menu-open'><span class="navbar-toggler-icon"></span></button>
   <div id='menu-panel' class='bg-body-tertiary'>
-    <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
     <ul class='menu-list'>
+      <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
+      <div class="d-flex py-4">
+       <%= link_to '新規作成', login_path, class: "sign_in btn btn-secondary" %>
+      </div>
+      <div class="border border-secondary w-100"></div>
+      <h4 class="py-3">ブックマーク済みのメモ</h4>
+      <li>リスト</li>
+      <li>リスト</li>
+      <li>リスト</li>
+      <div class="border border-secondary w-100"></div>
+      <h4 class="py-3">全てのメモ</h4>
       <li>リスト</li>
       <li>リスト</li>
       <li>リスト</li>
     </ul>
   </div>
-</div>
+</nav>
