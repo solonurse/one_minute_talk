@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_30_020635) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_132938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "examples", force: :cascade do |t|
+    t.string "sentence"
+    t.bigint "memo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memo_id"], name: "index_examples_on_memo_id"
+  end
+
+  create_table "explanations", force: :cascade do |t|
+    t.string "element", null: false
+    t.string "basis", null: false
+    t.bigint "memo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memo_id"], name: "index_explanations_on_memo_id"
+  end
 
   create_table "memos", force: :cascade do |t|
     t.string "title", null: false
@@ -40,5 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_020635) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "examples", "memos"
+  add_foreign_key "explanations", "memos"
   add_foreign_key "memos", "users"
 end
