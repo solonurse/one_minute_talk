@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="text-center col">
+    <%= form_with url: memos_path, local: true do |f| %>
+      <div class="my-5">
+        <h3>あなたが伝えたいこと</h3>
+        <div class="container my-3">
+          <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto', value: @title %>
+        </div>
+      </div>
+      <div class="my-5">
+        <h3>伝えたい理由の中から特に伝えたいものを3つまで選びましょう</h3>
+        <div class="container">
+          <% @elements.each do |element| %>
+            <%= f.text_field :element, class: 'form-control w-50 mx-auto', value: element %>
+          <% end %>
+        </div>
+      </div>
+      <%= f.submit "次へ" %>
+    <% end %>
+    </div>
+  </div>
+</div>
