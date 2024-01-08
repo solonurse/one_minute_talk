@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const elementContainer = document.getElementById("element-container");
   const addButton = document.getElementById("add-button");
   let formNum = 0;
-  
+
   addButton.addEventListener("click",  () => {
     const newForm = document.createElement("input");
-    const newButton = document.createElement("button");
+    // const newCount = document.createElement("span");
     
     formNum += 1
     newForm.setAttribute("id", `element-form_${formNum}`);
@@ -13,5 +13,5 @@ document.addEventListener("DOMContentLoaded", function () {
     newForm.setAttribute("type", "text");
     newForm.setAttribute("name", "element");
     elementContainer.appendChild(newForm);
-  })
-})
+  });
+});
