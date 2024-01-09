@@ -40,3 +40,6 @@ ja:
     update:
       updated: 'プロフィールを更新しました'
       update_failed: 'プロフィールの更新に失敗しました'
+  explanations:
+    element:
+      fail: 'あなたが伝えたいことと伝えたい理由を入力してください'
