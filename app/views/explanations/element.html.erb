@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="text-center col">
-    <%= form_with url: memos_path, local: true do |f| %>
+    <%= form_with url: explanations_basis_path, local: true do |f| %>
       <div class="my-5">
         <h3>あなたが伝えたいこと</h3>
         <div class="container my-3">
@@ -11,8 +11,15 @@
       <div class="my-5">
         <h3>伝えたい理由の中から特に伝えたいものを3つまで選びましょう</h3>
         <div class="container">
-          <% @elements.each do |element| %>
-            <%= f.text_field :element, class: 'form-control w-50 mx-auto', value: element %>
+          <% @elements.each do |key, value| %>
+            <div class="row justify-content-center my-3">
+              <div class="col-1">
+                <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);'%>
+              </div>
+              <div class="col-11 w-50">
+                <%= f.text_field "text_#{key}", class: 'form-control mx-auto', value: value %>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>

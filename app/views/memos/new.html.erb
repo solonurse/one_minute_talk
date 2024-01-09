@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="text-center col">
-      <%= form_with url: memos_path, local: true do |f| %>
+      <%= form_with url: explanations_element_path, local: true do |f| %>
         <div class="my-5">
           <h3>あなたが伝えたいこと</h3>
           <p>例：部署にAIを導入するべき</p>
@@ -13,7 +13,7 @@
           <h3>伝えたい理由を書き出してみましょう</h3>
           <p>例：人員削減になる</p>
           <div id="element-container">
-            <%= f.text_field :element, id: "element-form", class: 'form-control w-50 mx-auto' %>
+            <%= f.text_field :element_1, id: "element-form", class: 'form-control w-50 mx-auto' %>
           </div>
           <div id="add-button" class="mt-3 btn btn-secondary">入力フォームを追加</div>
         </div>
