@@ -1,30 +1,30 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="text-center col">
-    <%= form_with url: explanations_basis_path, local: true do |f| %>
-      <div class="my-5">
-        <h3>あなたが伝えたいこと</h3>
-        <div class="container my-3">
-          <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto', value: @title %>
+    <div class="text-center col-12">
+      <%= form_with url: explanations_basis_path, local: true do |f| %>
+        <div class="my-3">
+          <h3>あなたが伝えたいこと</h3>
+          <div class="container my-3">
+            <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto', value: @title %>
+          </div>
         </div>
-      </div>
-      <div class="my-5">
-        <h3>伝えたい理由の中から特に伝えたいものを3つまで選びましょう</h3>
-        <div class="container">
-          <% @elements.each do |key, value| %>
-            <div class="row justify-content-center my-3">
-              <div class="col-1">
-                <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);'%>
+        <div class="my-5">
+          <h3>伝えたい理由の中から特に伝えたいものを3つまで選びましょう</h3>
+          <div class="container">
+            <% @elements.each do |key, value| %>
+              <div class="row justify-content-center my-3">
+                <div class="col-1">
+                  <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);'%>
+                </div>
+                <div class="col-11 w-50">
+                  <%= f.text_field "element_#{key}", class: 'form-control mx-auto', value: value %>
+                </div>
               </div>
-              <div class="col-11 w-50">
-                <%= f.text_field "text_#{key}", class: 'form-control mx-auto', value: value %>
-              </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
-      <%= f.submit "次へ" %>
-    <% end %>
+        <%= f.submit "次へ" %>
+      <% end %>
     </div>
   </div>
 </div>
