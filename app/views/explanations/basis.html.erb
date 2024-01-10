@@ -1,2 +1,26 @@
-<h1>Explanations#basis</h1>
-<p>Find me in app/views/explanations/basis.html.erb</p>
+<div class="container-fluid text-center">
+  <div class="row mt-3 mx-auto">
+    <h3 class="my-3">伝えたい理由について具体例があれば記入してください</h3>
+    <div class="col-5">例：人員削減になる</div>
+    <div class="col-2"><i class="bi bi-arrow-right"></i></div>
+    <div class="col-5">AIを導入することで、社員の残業時間が1時間減ることが期待される</div>
+  </div>
+  <div class="row mt-3">
+    <h3 class="col-6">伝えたい理由</h3>
+    <h3 class="col-6">具体例</h3>
+  </div>
+  <%= form_with url: explanations_confimation_path, local: true do |f| %>
+    <% @elements.each.with_index do |(key, value), i| %>
+      <div class="row mx-auto my-3">
+        <div class="col-5">
+          <%= f.text_field "element_#{i}", class: 'form-control mx-auto', value: value %>
+        </div>
+        <div class="col-2"><i class="bi bi-arrow-right"></i></div>
+        <div class="col-5">
+        <%= f.text_field "basis_#{i}", class: 'form-control mx-auto' %>
+        </div>
+      </div>
+    <% end %>
+    <%= f.submit "次へ" %>
+  <% end %>  
+</div>
