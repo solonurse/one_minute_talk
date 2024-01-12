@@ -23,7 +23,7 @@
       <% if 1 == 2 %>
         <h2 class="text-center mt-5">メモを選択してください</h2>
       <% else %>
-        <%= render 'memos/selected_memo' %>
+        <%= render 'memos/selected_memo', title: @title %>
       <% end %>
     </div>
   </div>

@@ -1,6 +1,7 @@
 class ExplanationsController < ApplicationController
+  before_action :title_params
+
   def element
-    @title = params[:title]
     elements_params
 
     if @title.present? && @elements.present?
@@ -12,13 +13,13 @@ class ExplanationsController < ApplicationController
   end
 
   def basis
-    @title = params[:title]
     # チェックボックスのキーを取得
     checkbox_key = params.keys.select { |key| key.to_s.start_with?('checkbox_') && params[key].to_i == 1 }
     # チェックボックスのキーの数字を取得
     checkbox_num = checkbox_key.map { |key| key.to_s.gsub('checkbox_', '')}
 
     if @title.present? && checkbox_key.present?
+      @register_memo_form = RegisterMemoForm.new
       @elements = {}
       # チェックボックスと同じ数字のelementキーを取得
       checkbox_num.each do |num|
@@ -31,10 +32,11 @@ class ExplanationsController < ApplicationController
     end
   end
 
-  def confimation
-  end
-
   private
+
+  def title_params
+    @title = params[:title]
+  end
 
   def elements_params
     # element_~関連のパラメーターを取得
