@@ -21,7 +21,7 @@ class ExplanationsController < ApplicationController
     if @title.present? && checkbox_key.present?
       @register_memo_form = RegisterMemoForm.new
       @elements = {}
-      # チェックボックスと同じ数字のelementキーを取得
+      # チェックボックスと同じ数字のelement_キーを取得
       checkbox_num.each do |num|
         @elements[num] = params["element_#{num}"] if params["element_#{num}"].present?
       end

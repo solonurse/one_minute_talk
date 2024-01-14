@@ -4,7 +4,7 @@ class RegisterMemoForm
   include ActiveModel::Attributes
   include ActiveModel::Validations
 
-  attribute :memo_title
+  attribute :title
   attribute :element_0
   attribute :element_1
   attribute :element_2
@@ -13,22 +13,25 @@ class RegisterMemoForm
   attribute :basis_2
   attribute :user_memo_id
 
-  validates :user_memo_id, presence: true
   with_options presence: true do
-    validates :memo_title
+    validates :title
+    validates :user_memo_id
     validates :element_0
     validates :element_1
     validates :element_2
+    validates :basis_0
+    validates :basis_1
+    validates :basis_2
   end
 
   def save
+    return false if invalid?
     ActiveRecord::Base.transaction do
-      memo_title = Memo.create(title: memo_title, user_id: user_memo_id)
-      memo_title.explanations.create(element: element_0, basis: basis_0) if element_0.present?
-      memo_title.explanations.create(element: element_1, basis: basis_1) if element_1.present?
-      memo_title.explanations.create(element: element_2, basis: basis_2) if element_2.present?
+      memo_title = Memo.create!(title: title, user_id: user_memo_id)
+      memo_title.explanations.create!(element: element_0, basis: basis_0) if element_0.present? && basis_0.present?
+      memo_title.explanations.create!(element: element_1, basis: basis_1) if element_1.present? && basis_1.present?
+      memo_title.explanations.create!(element: element_2, basis: basis_2) if element_2.present? && basis_2.present?
     end
-  # rescue ActiveRecord::RecordInvalid
-  #   false
+    true
   end
 end
