@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :password_resets, only: %i[new create edit update]
   resources :profiles, only: %i[edit update]
-  resources :memos, only: %i[index new create edit update destroy]
+  resources :memos
 
   post 'explanations/element'
   post 'explanations/basis'

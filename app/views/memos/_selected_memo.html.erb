@@ -1,6 +1,6 @@
 <div class="row py-2">
   <div class='col-10'>
-    <h2 class='text-center'>サイドメニューで選択したメモのタイトル</h2>
+    <h2 class='text-center'><%= selected_memo.title %></h2>
   </div>
   <div class='col-2'>
     <%= link_to "#", class: "text-decoration-none align-text-top me-1" do %>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="row ps-4">
-      <div class="col-10 border mt-3"><%= title %></div>
+      <div class="col-10 border mt-3"><%= selected_memo.title %></div>
     </div>
     <div class="row">
       <div class="col-4">
@@ -34,9 +34,9 @@
       </div>
     </div>
     <div class="row text-center mx-auto justify-content-around">
-      <div class="border col-3">主張の内容</div>
-      <div class="border col-3">主張の内容</div>
-      <div class="border col-3">主張の内容</div>
+      <% element_basis.each do |element| %>
+        <div class="border col-3"><%= element[:element] %></div>
+      <% end %>
       <div class="rounded-pill bg-secondary col-1 p-1">
         <h4>要素</h4>
       </div>
@@ -53,9 +53,9 @@
       </div>
     </div>
     <div class="row text-center mx-auto pb-2 justify-content-around">
-      <div class="border col-3">根拠</div>
-      <div class="border col-3">根拠</div>
-      <div class="border col-3">根拠</div>
+      <% element_basis.each do |basis| %>
+        <div class="border col-3"><%= basis[:basis] %></div>
+      <% end %>
       <div class="rounded-pill bg-secondary col-1 p-1">
         <h4>根拠</h4>
       </div>
