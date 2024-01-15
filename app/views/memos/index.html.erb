@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-lg-2 d-none d-lg-block border bg-body-tertiary">
       <div class='h-100'>
-        <ul class="menu-list">
+        <ul class="menu-list list-group list-group-flush">
           <div class="text-center py-4">
-          <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
+            <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
           </div>
           <div class="border border-secondary w-100"></div>
           <h4 class="py-3">ブックマーク済みのメモ</h4>
@@ -12,18 +12,18 @@
           <li>リスト</li>
           <li>リスト</li>
           <div class="border border-secondary w-100"></div>
-          <h4 class="py-3">全てのメモ</h4>
-          <li>リスト</li>
-          <li>リスト</li>
-          <li>リスト</li>
+          <h4 class="py-3 text-center">全てのメモ</h4>
+          <% @memos.each do |memo| %>
+            <%= link_to memo.title, memo_path(memo), class: "list-group-item bg-body-tertiary" %>
+          <% end %>
         </ul>
       </div>
     </div>
     <div class="container-fluid bg-info col-lg-10" style="height: 100vh;">
-      <% if 1 == 2 %>
-        <h2 class="text-center mt-5">メモを選択してください</h2>
+      <% if @selected_memo.present? %>
+        <%= render 'memos/selected_memo', selected_memo: @selected_memo, element_basis: @element_basis %>
       <% else %>
-        <%= render 'memos/selected_memo', title: @title %>
+        <h2 class="text-center mt-5">メモを選択してください</h2>
       <% end %>
     </div>
   </div>

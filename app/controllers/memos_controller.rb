@@ -7,6 +7,13 @@ class MemosController < ApplicationController
 
   def new; end
 
+  def show
+    @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
+    @selected_memo = Memo.find_by(id: params[:id])
+    @element_basis = @selected_memo.explanations
+    render :index
+  end
+
   def create
     @register_memo_form = RegisterMemoForm.new(register_memo_params)
 
