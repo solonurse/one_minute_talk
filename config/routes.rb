@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resources :profiles, only: %i[edit update]
   resources :memos
+  resources :bookmarks, only: %i[create destroy]
 
   post 'explanations/element'
   post 'explanations/basis'

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="text-center col-12">
-      <%= form_with url: explanations_basis_path, local: true do |f| %>
+      <%= form_with url: explanations_basis_path, data: { turbo: false } do |f| %>
         <div class="my-3">
           <h3>あなたが伝えたいこと</h3>
           <div class="container my-3">
@@ -14,7 +14,7 @@
             <% @elements.each do |key, value| %>
               <div class="row justify-content-center my-3">
                 <div class="col-1">
-                  <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);'%>
+                  <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);' %>
                 </div>
                 <div class="col-11 w-50">
                   <%= f.text_field "element_#{key}", class: 'form-control mx-auto', value: value %>
