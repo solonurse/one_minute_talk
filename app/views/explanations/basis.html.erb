@@ -1,6 +1,6 @@
 <div class="container-fluid text-center">
   <h3 class="my-5">伝えたい理由について具体例があれば記入してください</h3>
-  <%= form_with model: @register_memo_form, url: memos_path, local: true do |f| %>
+  <%= form_with model: @register_memo_form, url: memos_path, data: { turbo: false } do |f| %>
     <div class="row">
       <h4>あなたが伝えたいこと</h4>
       <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto mt-3', value: @title %>

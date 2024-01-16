@@ -8,13 +8,27 @@
       </div>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3">ブックマーク済みのメモ</h4>
-      <li>リスト</li>
-      <li>リスト</li>
-      <li>リスト</li>
+      <% if @bookmark_memos.present? %>
+        <% @bookmark_memos.each do |bookmark_memo| %>
+          <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+            <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
+            <%= render 'bookmark_button', memo: bookmark_memo %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>ブックマーク済みのメモはありません</p>
+      <% end %>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3 text-center">全てのメモ</h4>
-      <% @memos.each do |memo| %>
-        <%= link_to memo.title, memo_path(memo), class: "text-decoration-none list-group-item bg-body-tertiary" %>
+      <% if @memos.present? %>
+        <% @memos.each do |memo| %>
+          <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+            <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none" %>
+            <%= render 'bookmark_button', memo: memo %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>作成済みのメモはありません</p>
       <% end %>
     </ul>
   </div>

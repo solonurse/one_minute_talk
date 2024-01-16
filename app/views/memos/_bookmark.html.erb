@@ -1,0 +1,3 @@
+<%= link_to bookmarks_path(memo_id: memo.id), id: "bookmark-button-for-memo-#{memo.id}", data: { turbo_method: :post }, style: 'transform: scale(1.5);' do %>
+  <i class="bi bi-bookmark-check"></i>
+<% end %>

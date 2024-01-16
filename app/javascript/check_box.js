@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
   const checkboxes = document.querySelectorAll('.element-checkbox');
 
   checkboxes.forEach(function(checkbox) {

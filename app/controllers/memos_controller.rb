@@ -3,12 +3,14 @@ class MemosController < ApplicationController
 
   def index
     @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
+    @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)
   end
 
   def new; end
 
   def show
     @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
+    @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)
     @selected_memo = Memo.find_by(id: params[:id])
     @element_basis = @selected_memo.explanations
     render :index

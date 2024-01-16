@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
-      <%= render 'memos/slidebar' %>
+      <%= render 'memos/slidebar', memos: @memos %>
       <%= link_to 'ONE MINUTE TALK', memos_path, class: "navbar-brand ms-2 pt-2" %>
       <button type="button" id="open" class="btn btn-secondary me-2">マイページ</button>
   </nav>

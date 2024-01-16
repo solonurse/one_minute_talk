@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="text-center col">
-      <%= form_with url: explanations_element_path, local: true do |f| %>
+      <%= form_with url: explanations_element_path, data: { turbo: false } do |f| %>
         <div class="my-5">
           <h3>あなたが伝えたいこと</h3>
           <p>例：部署にAIを導入するべき</p>
