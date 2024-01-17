@@ -1,6 +1,4 @@
 class MemosController < ApplicationController
-  # before_action :memo_params, only: %i[create]
-
   def index
     @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
     @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)

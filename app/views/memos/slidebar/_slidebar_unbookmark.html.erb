@@ -1,0 +1,3 @@
+<%= link_to bookmark_path(current_user.bookmarks.find_by(memo_id: memo.id)), id: "slidebar-unbookmark-button-for-memo-#{memo.id}", data: { turbo_method: :delete }, style: 'transform: scale(1.5);' do %>
+  <i class="bi bi-bookmark-check-fill"></i>
+<% end %>
