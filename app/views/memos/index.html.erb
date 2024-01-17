@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-2 d-none d-lg-block border bg-body-tertiary">
+    <div class="col-sm-3 d-none d-sm-block border bg-body-tertiary">
       <div class='h-100'>
-        <ul class="menu-list list-group list-group-flush">
+        <ul class='menu-list list-group list-group-flush'>
           <div class="text-center py-4">
             <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
           </div>
           <div class="border border-secondary w-100"></div>
-          <h4 class="py-3">ブックマーク済みのメモ</h4>
+          <h4 class="py-3 mx-auto">ブックマーク済みのメモ</h4>
           <% if @bookmark_memos.present? %>
             <% @bookmark_memos.each do |bookmark_memo| %>
               <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
@@ -16,7 +16,7 @@
               </div>
             <% end %>
           <% else %>
-            <p>ブックマーク済みのメモはありません</p>
+            <p class="mx-auto">ブックマーク済みのメモはありません</p>
           <% end %>
           <div class="border border-secondary w-100"></div>
           <h4 class="py-3 text-center">全てのメモ</h4>
@@ -33,7 +33,7 @@
         </ul>
       </div>
     </div>
-    <div class="container-fluid bg-info col-lg-10" style="height: 100vh;">
+    <div class="container-fluid bg-info col-sm-9" style="height: 100vh;">
       <% if @selected_memo.present? %>
         <%= render 'memos/selected_memo', selected_memo: @selected_memo, element_basis: @element_basis %>
       <% else %>

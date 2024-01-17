@@ -1,0 +1,5 @@
+<% if current_user.bookmark?(memo) %>
+	<%= render 'memos/slidebar/slidebar_unbookmark', memo: memo %>
+<% else %>
+	<%= render 'memos/slidebar/slidebar_bookmark', memo: memo %>
+<% end %>
