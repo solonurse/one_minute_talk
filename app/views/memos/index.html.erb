@@ -8,16 +8,20 @@
           </div>
           <div class="border border-secondary w-100"></div>
           <h4 class="py-3 mx-auto">ブックマーク済みのメモ</h4>
-          <% if @bookmark_memos.present? %>
-            <% @bookmark_memos.each do |bookmark_memo| %>
-              <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
-                <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
-                <%= render 'bookmark_button', memo: bookmark_memo %>
-              </div>
+          <div id="bookmarked-memo" class='list-group list-group-flush'>
+            <% if @bookmark_memos.present? %>
+              <% @bookmark_memos.each do |bookmark_memo| %>
+                <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+                  <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
+                  <%= link_to bookmark_path(current_user.bookmarks.find_by(memo_id: bookmark_memo.id)), data: { turbo_method: :delete }, style: 'transform: scale(1.5);' do %>
+                    <i class="bi bi-bookmark-check-fill"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="mx-auto">ブックマーク済みのメモはありません</p>
             <% end %>
-          <% else %>
-            <p class="mx-auto">ブックマーク済みのメモはありません</p>
-          <% end %>
+          </div>
           <div class="border border-secondary w-100"></div>
           <h4 class="py-3 text-center">全てのメモ</h4>
           <% if @memos.present? %>
@@ -35,7 +39,7 @@
     </div>
     <div class="container-fluid bg-info col-sm-9" style="height: 100vh;">
       <% if @selected_memo.present? %>
-        <%= render 'memos/selected_memo', selected_memo: @selected_memo, element_basis: @element_basis %>
+        <%= render 'memos/selected_memo', selected_memo: @selected_memo %>
       <% else %>
         <h2 class="text-center mt-5">メモを選択してください</h2>
       <% end %>

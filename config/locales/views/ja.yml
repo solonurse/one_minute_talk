@@ -3,6 +3,8 @@ ja:
     register: '登録'
     login: 'ログイン'
     update: '更新する'
+    message:
+      delete_confirm: 'メモを削除してもよろしいですか？'
   users:
     new:
       title: 'ユーザー登録'
@@ -44,6 +46,8 @@ ja:
     create:
       success: 'メモを作成しました'
       fail: 'メモの作成に失敗しました'
+    destroy:
+      success: 'メモを削除しました'
   explanations:
     element:
       fail: 'あなたが伝えたいことと伝えたい理由を入力してください'

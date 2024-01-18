@@ -1,16 +1,13 @@
 class MemosController < ApplicationController
-  def index
-    @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
-    @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)
-  end
+  before_action :set_memos, only: %i[index show]
+  before_action :set_bookmark_memos, only: %i[index show]
+
+  def index; end
 
   def new; end
 
   def show
-    @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
-    @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)
-    @selected_memo = Memo.find_by(id: params[:id])
-    @element_basis = @selected_memo.explanations
+    @selected_memo = @memos.find_by(id: params[:id])
     render :index
   end
 
@@ -26,7 +23,21 @@ class MemosController < ApplicationController
     end
   end
 
+  def destroy
+    @memo = current_user.memos.find(params[:id])
+    @memo.destroy!
+    redirect_to memos_path, success: t('.success'), status: :see_other
+  end
+
   private
+
+  def set_memos
+    @memos = current_user.memos.all.includes(:explanations).order(created_at: :desc)
+  end
+
+  def set_bookmark_memos
+    @bookmark_memos = current_user.bookmark_memos.all.order(created_at: :desc)
+  end
 
   def register_memo_params
     params.require(:register_memo_form).permit(:title, :element_0, :element_1, :element_2, :basis_0, :basis_1, :basis_2).merge(user_memo_id: current_user.id)
