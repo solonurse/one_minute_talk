@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_user
+  skip_before_action :set_memos, only: %i[update]
+	skip_before_action :set_bookmark_memos, only: %i[update]
 
   def edit; end
 
