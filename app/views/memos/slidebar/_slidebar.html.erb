@@ -1,23 +1,27 @@
-<nav class="navbar d-sm-none bg-body-tertiary d-flex ms-2">
-  <button id='menu-open'><span class="navbar-toggler-icon"></span></button>
+<nav class="navbar d-sm-none bg-body-tertiary">
+  <button id='menu-open' class="ms-2"><span class="navbar-toggler-icon"></span></button>
   <div id='menu-panel' class='bg-body-tertiary'>
     <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
     <ul class=' menu-list list-group list-group-flush'>
       <div class="text-center py-4">
-       <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
+        <%= link_to '新規作成', new_memo_path, class: "btn btn-secondary text-center" %>
       </div>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3">ブックマーク済みのメモ</h4>
-      <% if @bookmark_memos.present? %>
-        <% @bookmark_memos.each do |bookmark_memo| %>
-          <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
-            <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
-            <%= render 'memos/slidebar/slidebar_bookmark_button', memo: bookmark_memo %>
-          </div>
+      <div id="bookmarked-slidebar-memo" class='list-group list-group-flush'>
+        <% if @bookmark_memos.present? %>
+          <% @bookmark_memos.each do |bookmark_memo| %>
+            <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+              <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
+              <%= link_to bookmark_path(current_user.bookmarks.find_by(memo_id: bookmark_memo.id)), data: { turbo_method: :delete }, style: 'transform: scale(1.5);' do %>
+                <i class="bi bi-bookmark-check-fill"></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>ブックマーク済みのメモはありません</p>
         <% end %>
-      <% else %>
-        <p>ブックマーク済みのメモはありません</p>
-      <% end %>
+      </div>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3 text-center">全てのメモ</h4>
       <% if @memos.present? %>

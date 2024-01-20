@@ -1,0 +1,14 @@
+<div id="bookmarked-slidebar-memo" class='list-group list-group-flush'>
+  <% if @bookmark_memos.present? %>
+    <% @bookmark_memos.each do |bookmark_memo| %>
+      <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+        <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
+        <%= link_to bookmark_path(current_user.bookmarks.find_by(memo_id: bookmark_memo.id)), id: "unbookmarked-button-for-memo-#{bookmark_memo.id}", data: { turbo_method: :delete }, style: 'transform: scale(1.5);' do %>
+          <i class="bi bi-bookmark-check-fill"></i>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="mx-auto">ブックマーク済みのメモはありません</p>
+  <% end %>
+<div>
