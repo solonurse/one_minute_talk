@@ -24,15 +24,24 @@ class MemosController < ApplicationController
   end
 
   def edit
+    @register_memo_form = RegisterMemoForm.new
     @memo_explanations = @memos.find_by(id: params[:id])
-    
-    @register_memo_form = RegisterMemoForm.new(title: @memo_explanations.title, element_0: @memo_explanations.explanations[0].element, basis_0: @memo_explanations.explanations[0].basis, element_1: @memo_explanations.explanations[1].element, basis_1: @memo_explanations.explanations[1].basis, element_2: @memo_explanations.explanations[2].element, basis_2: @memo_explanations.explanations[2].basis)
+    @elements = {}
+    @basises = {}
+    (0..2).each do |i|
+      if @memo_explanations.explanations[i]
+        element = @memo_explanations.explanations[i].element
+        basis = @memo_explanations.explanations[i].basis
+      end
+
+      @elements[i] = element.present? ? element : ''
+      @basises[i] = basis.present? ? basis : ''
+    end
   end
 
   def update
     @register_memo_form = RegisterMemoForm.new(update_memo_params)
-    memo_title = current_user.memos.find_by(id: params[:id])
-    explanations = memo_title.explanations
+
     if @register_memo_form.update
       redirect_to memos_path, success: t('.success')
     else

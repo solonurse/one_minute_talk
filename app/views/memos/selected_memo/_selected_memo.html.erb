@@ -1,0 +1,7 @@
+<% if selected_memo.explanations.size == 1 %>
+  <%= render 'memos/selected_memo/one_explanation', selected_memo: selected_memo %>
+<% elsif selected_memo.explanations.size == 2 %>
+  <%= render 'memos/selected_memo/two_explanations', selected_memo: selected_memo %>
+<% else %>
+  <%= render 'memos/selected_memo/three_explanations', selected_memo: selected_memo %>
+<% end %>
