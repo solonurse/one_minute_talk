@@ -3,7 +3,7 @@
   <%= form_with model: @register_memo_form, url: memo_path(@memo_explanations), local: true, data: { turbo: false } do |f| %>
     <div class="row">
       <h4>あなたが伝えたいこと</h4>
-      <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto mt-3', value: @register_memo_form.title %>
+      <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto mt-3', value: @memo_explanations.title %>
     </div>
     <div class="row mt-5">
       <h4 class="col-6">伝えたい理由</h4>
@@ -16,29 +16,29 @@
     </div>
       <div class="row justify-content-center mx-auto mt-3">
         <div class="col-5">
-          <%= f.text_field :element_0, class: 'form-control mx-auto', value: @memo_explanations.explanations[0].element %>
+          <%= f.text_field :element_0, class: 'form-control mx-auto', value: @elements[0] %>
         </div>
         <div class="col-1"><i class="bi bi-arrow-right"></i></div>
         <div class="col-5">
-          <%= f.text_field :basis_0, class: 'form-control mx-auto', value: @memo_explanations.explanations[0].basis %>
+          <%= f.text_field :basis_0, class: 'form-control mx-auto', value: @basises[0] %>
         </div>
       </div>
       <div class="row justify-content-center mx-auto mt-3">
         <div class="col-5">
-          <%= f.text_field :element_1, class: 'form-control mx-auto', value: @memo_explanations.explanations[1].element %>
+          <%= f.text_field :element_1, class: 'form-control mx-auto', value: @elements[1] %>
         </div>
         <div class="col-1"><i class="bi bi-arrow-right"></i></div>
         <div class="col-5">
-          <%= f.text_field :basis_1, class: 'form-control mx-auto', value: @memo_explanations.explanations[1].basis %>
+          <%= f.text_field :basis_1, class: 'form-control mx-auto', value: @basises[1] %>
         </div>
       </div>
       <div class="row justify-content-center mx-auto mt-3">
         <div class="col-5">
-          <%= f.text_field :element_2, class: 'form-control mx-auto', value: @memo_explanations.explanations[2].element %>
+          <%= f.text_field :element_2, class: 'form-control mx-auto', value: @elements[2] %>
         </div>
         <div class="col-1"><i class="bi bi-arrow-right"></i></div>
         <div class="col-5">
-          <%= f.text_field :basis_2, class: 'form-control mx-auto', value: @memo_explanations.explanations[2].basis %>
+          <%= f.text_field :basis_2, class: 'form-control mx-auto', value: @basises[2] %>
         </div>
       </div>
     <%= f.submit "例文を作成する", class: "mt-5" %>

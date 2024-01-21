@@ -39,7 +39,7 @@
     </div>
     <div class="container-fluid bg-info col-sm-9" style="height: 100vh;">
       <% if @selected_memo.present? %>
-        <%= render 'memos/selected_memo', selected_memo: @selected_memo %>
+        <%= render 'memos/selected_memo/selected_memo', selected_memo: @selected_memo %>
       <% else %>
         <h2 class="text-center mt-5">メモを選択してください</h2>
       <% end %>

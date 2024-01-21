@@ -23,38 +23,32 @@
       <div class="col-10 border mt-3"><%= selected_memo.title %></div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-5 ps-5">
         <i class="bi bi-arrow-down-left h2"></i>
       </div>
-      <div class="col-2">
-        <i class="bi bi-arrow-down h2"></i>
-      </div>
-      <div class="col-5">
+      <div class="col-5 pe-5">
         <i class="bi bi-arrow-down-right h2"></i>
       </div>
     </div>
     <div class="row text-center mx-auto justify-content-around">
       <% selected_memo.explanations.each do |explanation| %>
-        <div class="border col-3"><%= explanation[:element] %></div>
+        <div class="border col-4"><%= explanation[:element] %></div>
       <% end %>
       <div class="rounded-pill bg-secondary col-1 p-1">
         <h4>要素</h4>
       </div>
       <div class="row">
-        <div class="col-3">
+        <div class="col-5 pe-4">
           <i class="bi bi-arrow-down h2"></i>
         </div>
-        <div class="col-4">
-          <i class="bi bi-arrow-down h2"></i>
-        </div>
-        <div class="col-4">
+        <div class="col-5 ps-4">
           <i class="bi bi-arrow-down h2"></i>
         </div>
       </div>
     </div>
     <div class="row text-center mx-auto pb-2 justify-content-around">
       <% selected_memo.explanations.each do |explanation| %>
-        <div class="border col-3"><%= explanation[:basis] %></div>
+        <div class="border col-4"><%= explanation[:basis] %></div>
       <% end %>
       <div class="rounded-pill bg-secondary col-1 p-1">
         <h4>根拠</h4>

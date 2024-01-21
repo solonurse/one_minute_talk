@@ -17,21 +17,18 @@ class RegisterMemoForm
   with_options presence: true do
     validates :title
     validates :user_id
-    validates :element_0
-    validates :element_1
-    validates :element_2
-    validates :basis_0
-    validates :basis_1
-    validates :basis_2
   end
 
   def save
     return false if invalid?
     ActiveRecord::Base.transaction do
       memo_title = Memo.create!(title: title, user_id: user_id)
-      memo_title.explanations.create!(element: element_0, basis: basis_0) if element_0.present? && basis_0.present?
-      memo_title.explanations.create!(element: element_1, basis: basis_1) if element_1.present? && basis_1.present?
-      memo_title.explanations.create!(element: element_2, basis: basis_2) if element_2.present? && basis_2.present?
+
+      (0..2).each do |i|
+        element = send("element_#{i}")
+        basis = send("basis_#{i}")
+        memo_title.explanations.create!(element: element, basis: basis) if element.present? && basis.present?
+      end
     end
     true
   end
@@ -42,9 +39,24 @@ class RegisterMemoForm
 
     ActiveRecord::Base.transaction do
       memo_explanations.update!(title: title)
-      memo_explanations.explanations[0].update!(element: element_0, basis: basis_0) if element_0.present? && basis_0.present?
-      memo_explanations.explanations[1].update!(element: element_1, basis: basis_1) if element_1.present? && basis_1.present?
-      memo_explanations.explanations[2].update!(element: element_2, basis: basis_2) if element_2.present? && basis_2.present?
+
+      (0..2).each do |i|
+        element = send("element_#{i}")
+        basis = send("basis_#{i}")
+        explanation = memo_explanations.explanations[i]
+
+        if explanation.present?
+          if element.present? && basis.present?
+            explanation.update!(element: element, basis: basis)
+          elsif element.blank? && basis.blank?
+            explanation.destroy! if explanation.present?
+          else
+            return false
+          end
+        else
+          memo_explanations.explanations.create!(element: element, basis: basis) if element.present? && basis.present?
+        end
+      end
     end
     true
   end
