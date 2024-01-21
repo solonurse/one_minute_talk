@@ -46,6 +46,9 @@ ja:
     create:
       success: 'メモを作成しました'
       fail: 'メモの作成に失敗しました'
+    update:
+      success: 'メモを更新しました'
+      fail: 'メモの更新に失敗しました'
     destroy:
       success: 'メモを削除しました'
   explanations:

@@ -17,7 +17,6 @@ class RegisterMemoForm
   with_options presence: true do
     validates :title
     validates :user_id
-    validates :memo_id
     validates :element_0
     validates :element_1
     validates :element_2

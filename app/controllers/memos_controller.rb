@@ -25,6 +25,7 @@ class MemosController < ApplicationController
 
   def edit
     @memo_explanations = @memos.find_by(id: params[:id])
+    
     @register_memo_form = RegisterMemoForm.new(title: @memo_explanations.title, element_0: @memo_explanations.explanations[0].element, basis_0: @memo_explanations.explanations[0].basis, element_1: @memo_explanations.explanations[1].element, basis_1: @memo_explanations.explanations[1].basis, element_2: @memo_explanations.explanations[2].element, basis_2: @memo_explanations.explanations[2].basis)
   end
 
@@ -54,7 +55,6 @@ class MemosController < ApplicationController
   end
 
   def save_failed_memo_params
-    @register_memo_form = RegisterMemoForm.new
     @title = params[:register_memo_form][:title]
     @elements = {}
     index = 0
