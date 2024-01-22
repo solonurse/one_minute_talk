@@ -3,7 +3,7 @@ class Memo < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_users, through: :bookmarks, source: :user
   has_many :explanations, dependent: :destroy
-  has_many :examples, dependent: :destroy
+  has_one :example, dependent: :destroy
 
   validates :title, presence: true
 end
