@@ -29,13 +29,16 @@ class RegisterMemoForm
         basis = send("basis_#{i}")
         memo_title.explanations.create!(element: element, basis: basis) if element.present? && basis.present?
       end
+
+      memo_title.create_example!(memo_id: memo_title.id, sentence: '例文')
+      # example_sententce = chat_gpt_service.chat("")
     end
     true
   end
 
   def update
     return false if invalid?
-    memo_explanations = Memo.includes(:explanations).find_by(id: memo_id, user_id: user_id)
+    memo_explanations = Memo.includes(:explanations, :example).find_by(id: memo_id, user_id: user_id)
 
     ActiveRecord::Base.transaction do
       memo_explanations.update!(title: title)
@@ -57,6 +60,9 @@ class RegisterMemoForm
           memo_explanations.explanations.create!(element: element, basis: basis) if element.present? && basis.present?
         end
       end
+
+      memo_explanations.example.update!(sentence: '新しい例文')
+      # example_sententce = chat_gpt_service.chat("")
     end
     true
   end

@@ -113,6 +113,7 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    event_stream_parser (1.0.0)
     execjs (2.9.1)
     factory_bot (6.4.3)
       activesupport (>= 5.0.0)
@@ -125,6 +126,8 @@ GEM
       base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.0.2)
     ffi (1.16.3)
     globalid (1.2.1)
@@ -169,6 +172,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    multipart-post (2.3.0)
     mutex_m (0.2.0)
     net-imap (0.4.8)
       date
@@ -302,6 +306,10 @@ GEM
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
+    ruby-openai (6.3.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -393,6 +401,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   rubocop-rspec
+  ruby-openai
   sassc-rails
   selenium-webdriver
   sentry-rails (~> 5.15)
