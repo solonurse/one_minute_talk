@@ -2,7 +2,7 @@
   <button id='menu-open' class="ms-2"><span class="navbar-toggler-icon"></span></button>
   <div id='menu-panel' class='bg-body-tertiary'>
     <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
-    <ul class=' menu-list list-group list-group-flush'>
+    <ul class=' menu-list list-group list-group-flush overflow-y-auto' style="height: 80vh;">
       <div class="text-center py-4">
         <%= link_to '新規作成', new_memo_path, class: "btn btn-secondary text-center" %>
       </div>
@@ -24,16 +24,18 @@
       </div>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3 text-center">全てのメモ</h4>
-      <% if @memos.present? %>
-        <% @memos.each do |memo| %>
-          <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
-            <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none" %>
-            <%= render 'memos/slidebar/slidebar_bookmark_button', memo: memo %>
-          </div>
+      <div class='list-group list-group-flush'>
+        <% if @memos.present? %>
+          <% @memos.each do |memo| %>
+            <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
+              <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none" %>
+              <%= render 'memos/slidebar/slidebar_bookmark_button', memo: memo %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>作成済みのメモはありません</p>
         <% end %>
-      <% else %>
-        <p>作成済みのメモはありません</p>
-      <% end %>
+      </div>
     </ul>
   </div>
 </nav>

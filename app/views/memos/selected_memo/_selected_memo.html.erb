@@ -1,3 +1,17 @@
+<div class="row py-2">
+  <div class='col-10'>
+    <h2 class='text-center'><%= selected_memo.title %></h2>
+  </div>
+  <div class='col-2'>
+    <%= link_to edit_memo_path(selected_memo), class: "text-decoration-none align-text-top me-1" do %>
+      <i class="bi bi-pencil">編集</i>
+    <% end %>
+    <%= link_to memo_path(selected_memo), class: "text-decoration-none align-text-top", data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm') } do %>
+      <i class="bi bi-trash3 text-danger">削除</i>
+    <% end %>
+  </div>
+</div>
+<!-- ピラミッドストラクチャー -->
 <% if selected_memo.explanations.size == 1 %>
   <%= render 'memos/selected_memo/one_explanation', selected_memo: selected_memo %>
 <% elsif selected_memo.explanations.size == 2 %>
@@ -5,3 +19,12 @@
 <% else %>
   <%= render 'memos/selected_memo/three_explanations', selected_memo: selected_memo %>
 <% end %>
+<!-- 例文 -->
+<div class="row mx-auto pt-5">
+  <%= form_with model: selected_memo.example, local: true, data: { turbo: false } do |f| %>
+    <h4><%= f.label :sentence %></h4>
+    <%= f.text_area :sentence, id: "sentence-form", class: 'form-control', value: selected_memo.example[:sentence], rows: 6 %>
+    <div class="text-end"><span id="sentence-counter"><%= selected_memo.example[:sentence].length %></span>/300</div>
+    <div class="text-center mt-2"><%= f.submit '例文を編集', class: "btn btn-primary" %></div>
+  <% end %>
+</div>

@@ -8,3 +8,5 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: 'ユーザー名'
+      example:
+        sentence: '例文'
