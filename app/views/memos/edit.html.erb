@@ -1,9 +1,9 @@
 <div class="container-fluid text-center">
   <h3 class="my-5">伝えたい理由について具体例があれば記入してください</h3>
-  <%= form_with model: @register_memo_form, url: memo_path(@memo_explanations), local: true, data: { turbo: false } do |f| %>
+  <%= form_with model: @register_memo_form, url: memo_path(@memo), local: true, data: { "turbo-method": :post } do |f| %>
     <div class="row">
       <h4>あなたが伝えたいこと</h4>
-      <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto mt-3', value: @memo_explanations.title %>
+      <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto mt-3', value: @title %>
     </div>
     <div class="row mt-5">
       <h4 class="col-6">伝えたい理由</h4>
