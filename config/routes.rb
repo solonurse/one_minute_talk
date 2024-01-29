@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :memos, only: %i[index new show create edit destroy]
   resources :bookmarks, only: %i[create destroy]
   resources :examples, only: %i[update]
+  resources :pyramid_structures, only: %i[update]
 
   post 'explanations/element'
   post 'explanations/basis'

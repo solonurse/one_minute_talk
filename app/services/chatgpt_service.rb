@@ -11,9 +11,9 @@ class ChatgptService
       parameters: {
         model: "gpt-3.5-turbo", # Required. # 使用するGPT-3のエンジンを指定
         messages: [
-          # { role: "system", content: "You are a helpful assistant. response to japanese" }, 
-          # { role: "assistant", content: prompt },
-          { role: "user", content: "この文章をPREP法を使って300文字以内の文章を作成してください。主張は「私は〜だと考えます」、根拠は「なぜなら」から始めてください。\n#{prompt}" }
+          { role: "system", content: "You are a professional presenter. response to japanese" }, 
+          { role: "assistant", content: prompt },
+          { role: "user", content: "この文章をPREP法を使って300文字以内で文章を作成してください" }
         ],
         temperature: 0.7, # 応答のランダム性を指定
         max_tokens: 800,  # 応答の長さを指定

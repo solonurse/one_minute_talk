@@ -21,10 +21,16 @@
 <% end %>
 <!-- 例文 -->
 <div class="row mx-auto pt-5">
-  <%= form_with model: selected_memo.example, local: true, data: { turbo: false } do |f| %>
-    <h4><%= f.label :sentence %></h4>
-    <%= f.text_area :sentence, id: "sentence-form", class: 'form-control', value: selected_memo.example[:sentence], rows: 6 %>
-    <div class="text-end"><span id="sentence-counter"><%= selected_memo.example[:sentence].length %></span>/300</div>
-    <div class="text-center mt-2"><%= f.submit '例文を編集', class: "btn btn-primary" %></div>
-  <% end %>
+  <div class="col-sm-9">
+    <%= form_with model: selected_memo.example, local: true, data: { turbo: false } do |f| %>
+      <h4><%= f.label :sentence %></h4>
+      <%= f.text_area :sentence, id: "sentence-form", class: 'form-control', value: selected_memo.example[:sentence], rows: 6 %>
+      <div class="text-center mt-2"><%= f.submit '例文を編集', class: "btn btn-primary" %></div>
+    <% end %>
+  </div>
+  <div class="border col-sm-3">
+    <div><span id="sentence-counter">文字数　<%= selected_memo.example[:sentence].length %></span></div>
+    <div>読むために必要な時間　</div>
+    <div>タイマー</div>
+  </div>
 </div>

@@ -58,5 +58,9 @@ ja:
       fail: 'あなたが伝えたいことの入力、伝えたい理由の中から特に伝えたいものを選択してください'
   examples:
     update:
-      success: '例文を保存しました'
-      fail: '例文を保存できませんでした'
+      success: '例文を更新しました'
+      fail: '例文を更新できませんでした'
+  pyramid_structures:
+    update:
+      success: 'メモを更新しました'
+      fail: 'メモを更新できませんでした'
