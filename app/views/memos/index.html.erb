@@ -28,7 +28,7 @@
             <% @memos.each do |memo| %>
               <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
                 <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none" %>
-                <%= render 'bookmark_button', memo: memo %>
+                <%= render 'memos/bookmark_button', memo: memo %>
               </div>
             <% end %>
           <% else %>

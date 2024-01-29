@@ -1,9 +1,9 @@
 class ExplanationsController < ApplicationController
   before_action :title_params
+  before_action :elements_params, only: %i[element]
+  before_action :basises_params, only: %i[basis]
 
   def element
-    elements_params
-
     if @title.present? && @elements.present?
       render :element
     else
@@ -13,16 +13,11 @@ class ExplanationsController < ApplicationController
   end
 
   def basis
-    # チェックボックスのキーを取得
-    checkbox_key = params.keys.select { |key| key.to_s.start_with?('checkbox_') && params[key].to_i == 1 }
-    # チェックボックスのキーの数字を取得
-    checkbox_num = checkbox_key.map { |key| key.to_s.gsub('checkbox_', '')}
-
-    if @title.present? && checkbox_key.present?
+    if @title.present? && @checkbox_key.present?
       @register_memo_form = RegisterMemoForm.new
       @elements = {}
       # チェックボックスと同じ数字のelement_キーを取得
-      checkbox_num.each do |num|
+      @checkbox_num.each do |num|
         @elements[num] = params["element_#{num}"] if params["element_#{num}"].present?
       end
     else
@@ -43,5 +38,12 @@ class ExplanationsController < ApplicationController
     @elements = params.select { |key, value| key.to_s.start_with?('element_') }
     # nilまたは空白の値を削除
     @elements.reject! { |key, value| value.nil? || value.blank? }
+  end
+
+  def basises_params
+    # チェックボックスのキーを取得
+    @checkbox_key = params.keys.select { |key| key.to_s.start_with?('checkbox_') && params[key].to_i == 1 }
+    # チェックボックスのキーの数字を取得
+    @checkbox_num = @checkbox_key.map { |key| key.to_s.gsub('checkbox_', '')}
   end
 end
