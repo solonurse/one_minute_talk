@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid bg-body-tertiary">
   <div class="row">
-    <div class="col-sm-3 d-none d-sm-block border bg-body-tertiary">
-      <ul class='menu-list list-group list-group-flush overflow-y-auto' style="height: 99vh;">
+    <div class="col-sm-3 d-none d-sm-block border">
+      <ul class='menu-list list-group list-group-flush overflow-y-auto' style="height: 100vh;">
         <div class="text-center py-4">
           <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
         </div>
@@ -37,11 +37,11 @@
         </div>
       </ul>
     </div>
-    <div class="container-fluid bg-info col-sm-9" style="height: 100vh;">
+    <div class="container-fluid bg-info col-sm-9">
       <% if @selected_memo.present? %>
         <%= render 'memos/selected_memo/selected_memo', selected_memo: @selected_memo %>
       <% else %>
-        <h2 class="text-center mt-5">メモを選択してください</h2>
+        <h2 class="text-center mt-5" style="height: 100vh;">メモを選択してください</h2>
       <% end %>
     </div>
   </div>
