@@ -4,6 +4,8 @@ class RegisterMemoForm
   include ActiveModel::Attributes
   include ActiveModel::Validations
 
+  attr_reader :chatgpt_error_message
+
   attribute :title
   attribute :element_0
   attribute :element_1
@@ -51,32 +53,37 @@ class RegisterMemoForm
     @memo_title = Memo.find_by(id: memo_id, user_id: user_id)
 
     ActiveRecord::Base.transaction do
-      @memo_title.update!(title: title)
-      @explanations = {}
+      begin
+        @memo_title.update!(title: title)
+        @explanations = {}
 
-      (0..2).each do |i|
-        # 更新するデータ
-        element = send("element_#{i}")
-        basis = send("basis_#{i}")
+        (0..2).each do |i|
+          # 更新するデータ
+          element = send("element_#{i}")
+          basis = send("basis_#{i}")
 
-        if element.present? && basis.present?
-          if @memo_title.explanations[i].present?
-            @memo_title.explanations[i].update!(element: element, basis: basis)
-            @explanations[i] = @memo_title.explanations[i]
+          if element.present? && basis.present?
+            if @memo_title.explanations[i].present?
+              @memo_title.explanations[i].update!(element: element, basis: basis)
+              @explanations[i] = @memo_title.explanations[i]
+            else
+              @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis)
+            end
+          elsif element.blank? && basis.blank?
+            @memo_title.explanations[i].destroy! if @memo_title.explanations[i].present?
           else
-            @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis)
+            @explanations = {}
+            return false
           end
-        elsif element.blank? && basis.blank?
-          @memo_title.explanations[i].destroy! if @memo_title.explanations[i].present?
-        else
-          @explanations = {}
-          return false
         end
-      end
-      return false if @explanations.blank?
+        return false if @explanations.blank?
 
-      chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
-      @memo_title.example.update!(sentence: chatgpt_sententce)
+        chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
+        @memo_title.example.update!(sentence: chatgpt_sententce)
+      rescue StandardError => e
+        @chatgpt_error_message = e.message
+        return false
+      end
     end
     true
   end
@@ -84,9 +91,10 @@ class RegisterMemoForm
   private
 
   def questions_for_chatgpt
-    example_sententce = "結論:#{@memo_title.title}"
+    example_sententce = "Point : #{@memo_title.title}"
     @explanations.length.times do |i|
-      example_sententce += "\n根拠#{i}:#{@explanations[i][:element]}\n根拠#{i}の具体例:#{@explanations[i][:basis]}"
+      example_sententce += "\nReason #{i} : #{@explanations[i][:element]}
+                            \nSpecific example of reason #{i} : #{@explanations[i][:basis]}"
     end
     return example_sententce
   end

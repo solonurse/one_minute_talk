@@ -16,30 +16,36 @@ document.addEventListener('turbo:load', function() {
 
     time.textContent = `${minute}:${second}.${miliSecond}`;
     timeoutID = setTimeout(displayTime, 10);
+  };
+
+  if (startButton) {
+    startButton.addEventListener('click', () => {
+      startButton.disabled = true;
+      stopButton.disabled = false;
+      resetButton.disabled = true;
+  
+      startTime = Date.now();
+      displayTime();
+    });
   }
 
-  startButton.addEventListener('click', () => {
-    startButton.disabled = true;
-    stopButton.disabled = false;
-    resetButton.disabled = true;
+  if (stopButton) {
+    stopButton.addEventListener('click', () => {
+      startButton.disabled = false;
+      stopButton.disabled = true;
+      resetButton.disabled = false;
+      clearTimeout(timeoutID);
+      stopTime += (Date.now() - startTime);
+    });
+  }
 
-    startTime = Date.now();
-    displayTime();
-  });
-
-  stopButton.addEventListener('click', () => {
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    resetButton.disabled = false;
-    clearTimeout(timeoutID);
-    stopTime += (Date.now() - startTime);
-  });
-
-  resetButton.addEventListener('click', () => {
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    resetButton.disabled = true;
-    time.textContent = '00:00.00';
-    stopTime = 0;
-  });
+  if (resetButton) {
+    resetButton.addEventListener('click', () => {
+      startButton.disabled = false;
+      stopButton.disabled = true;
+      resetButton.disabled = true;
+      time.textContent = '00:00.00';
+      stopTime = 0;
+    });
+  }
 });

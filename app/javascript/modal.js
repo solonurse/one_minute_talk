@@ -17,17 +17,23 @@ document.addEventListener('turbo:load', function() {
     fill: 'forwards',
   };
 
-  open.addEventListener('click', () => {
-    modal.animate(showkeyframes, options);
-    mask.animate(showkeyframes, options);
-  });
+  if (open) {
+    open.addEventListener('click', () => {
+      modal.animate(showkeyframes, options);
+      mask.animate(showkeyframes, options);
+    });
+  }
 
-  close.addEventListener('click', () => {
-    modal.animate(hidekeyframes, options);
-    mask.animate(hidekeyframes, options);
-  });
+  if (close) {
+    close.addEventListener('click', () => {
+      modal.animate(hidekeyframes, options);
+      mask.animate(hidekeyframes, options);
+    });
+  }
 
-  mask.addEventListener('click', () => {
-    close.click();
-  });
+  if (mask) {
+    mask.addEventListener('click', () => {
+      close.click();
+    });
+  }
 });
