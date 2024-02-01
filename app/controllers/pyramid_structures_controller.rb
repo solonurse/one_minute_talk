@@ -3,7 +3,6 @@ class PyramidStructuresController < ApplicationController
 
   def update
     @selected_memo = @memos.find_by(id: params[:id])
-    # explanations = @selected_memo.explanations
 
     if @title.present? && @elements.present? && @basises.present? && @elements.size == @basises.size
       ActiveRecord::Base.transaction do

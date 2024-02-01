@@ -8,11 +8,15 @@ document.addEventListener('turbo:load', function() {
     fill: 'forwards',
   };
 
-  menuOpen.addEventListener('click', () => {
-    menuPanel.animate({translate: ['-100vw', 0]} ,menuOptions);
-  });
+  if (menuOpen) {
+    menuOpen.addEventListener('click', () => {
+      menuPanel.animate({translate: ['-100vw', 0]} ,menuOptions);
+    });
+  }
 
-  menuClose.addEventListener('click', () => {
-    menuPanel.animate({translate: [0, '-100vh']} ,menuOptions);
-  });
+  if (menuClose) {
+    menuClose.addEventListener('click', () => {
+      menuPanel.animate({translate: [0, '-100vh']} ,menuOptions);
+    });
+  }
 });

@@ -41,6 +41,10 @@
           <%= f.text_field :basis_2, class: 'form-control mx-auto', value: @basises[2] %>
         </div>
       </div>
-    <%= f.submit "例文を作成する", class: "mt-5" %>
+    <%= f.submit "例文を作成する", class: "example-button mt-5" %>
   <% end %>  
+  <div class="loading-wrap">
+    <%= image_tag "/assets/loading" %>
+    <p class="fw-bold">作成中</p>
+  </div>
 </div>

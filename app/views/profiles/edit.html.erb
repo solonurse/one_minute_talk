@@ -3,6 +3,7 @@
     <div class="col-4 mx-auto mt-5">
       <h1 class="text-center py-3"><%= t('.title') %></h1>
       <%= form_with model: @user, url: profile_path, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group py-3">
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
