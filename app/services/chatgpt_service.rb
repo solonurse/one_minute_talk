@@ -13,7 +13,6 @@ class ChatgptService
           model: "gpt-3.5-turbo", # Required. # 使用するGPT-3のエンジンを指定
           messages: [
             { role: "system", content: "You are a professional presenter" }, 
-            # { role: "assistant", content: prompt },
             { role: "user",
               content:
                 "Please create a sentence using the following conditions.
@@ -29,15 +28,12 @@ class ChatgptService
         },
       )
       response['choices'].first['message']['content']
-    # rescue OpenAI::APIError => e
+    rescue Faraday::BadRequestError => e
     #   # Chat-GPT APIからのエラーレスポンスを処理
-    #   Rails.logger.error("Chat-GPT APIエラー: #{e.message}")
-    #   raise APIError, "Chat-GPT APIからの回答を取得できませんでした。"
+      raise APIError
     rescue StandardError => e
       # その他の例外やエラーを処理
-      # Rails.logger.error("Chat-GPT APIで予期せぬエラーが発生しました: #{e.message}")
       raise StandardError
-      # , "Chat-GPT APIエラーが発生しました。"
     end
   end
 end

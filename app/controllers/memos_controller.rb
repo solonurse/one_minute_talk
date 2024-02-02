@@ -20,7 +20,11 @@ class MemosController < ApplicationController
       redirect_to memos_path, success: t('.success')
     else
       save_failed_memo_params
-      flash.now[:danger] = t('.fail')
+      if @register_memo_form.chatgpt_error_message.present?
+        flash.now[:danger] = t('.example_fail')
+      else
+        flash.now[:danger] = t('.fail')
+      end
       render 'explanations/basis', status: :unprocessable_entity
     end
   end
@@ -51,7 +55,7 @@ class MemosController < ApplicationController
     else
       update_failed_memo_params
       if @register_memo_form.chatgpt_error_message.present?
-        flash.now[:danger] = "例文を作成できませんでした"
+        flash.now[:danger] = t('.example_fail')
       else
         flash.now[:danger] = t('.fail')
       end
