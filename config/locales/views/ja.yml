@@ -46,9 +46,11 @@ ja:
     create:
       success: 'メモを作成しました'
       fail: '伝えたいこと、伝えたい理由、具体例をそれぞれ入力してください'
+      example_fail: '例文を作成できませんでした'
     update:
       success: 'メモを更新しました'
       fail: '伝えたいこと、伝えたい理由、具体例をそれぞれ入力してください'
+      example_fail: '例文を作成できませんでした'
     destroy:
       success: 'メモを削除しました'
   explanations:

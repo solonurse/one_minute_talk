@@ -80,6 +80,9 @@ class RegisterMemoForm
 
         chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
         @memo_title.example.update!(sentence: chatgpt_sententce)
+      rescue Faraday::BadRequestError => e
+        @chatgpt_error_message = e.message
+        return false
       rescue StandardError => e
         @chatgpt_error_message = e.message
         return false
