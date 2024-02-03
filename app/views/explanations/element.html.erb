@@ -1,30 +1,34 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="text-center col-12">
+<div class="memo-container py-3">
+  <div class="thinking-balloon mx-auto text-center">
+    <div class="mx-auto">
+      <div class="mb-5">
+        <h4>あなたが書き出した理由の中から特に伝えたいことを3つまで選んでみましょう</h4>
+      </div>
       <%= form_with url: explanations_basis_path, data: { turbo: false } do |f| %>
-        <div class="my-3">
-          <h3>あなたが伝えたいこと</h3>
-          <div class="container my-3">
-            <%= f.text_field :title, id: 'title-form', class: 'form-control w-50 mx-auto', value: @title %>
+        <div class="mb-3">
+          <h4 class="fw-bold">伝えたいこと</h4>
+          <div class="my-3">
+            <%= f.text_field :title, id: 'title-form', class: 'form-control w-75 mx-auto', value: @title %>
           </div>
         </div>
         <div class="my-5">
-          <h3>伝えたい理由の中から特に伝えたいものを3つまで選びましょう</h3>
-          <div class="container">
+          <h4 class="fw-bold">伝えたい理由</h4>
+          <div class="container mx-auto">
             <% @elements.each do |key, value| %>
-              <div class="row justify-content-center my-3">
+              <div class="row justify-content-center my-3 me-5">
                 <div class="col-1">
-                  <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2", style: 'transform: scale(2);' %>
+                  <%= f.check_box "checkbox_#{key}", class: "element-checkbox mt-2 me-2", style: 'transform: scale(2);' %>
                 </div>
-                <div class="col-11 w-50">
-                  <%= f.text_field "element_#{key}", class: 'form-control mx-auto', value: value %>
+                <div class="col-11 w-75">
+                  <%= f.text_field "element_#{key}", class: 'form-control', value: value %>
                 </div>
               </div>
             <% end %>
           </div>
         </div>
-        <%= f.submit "次へ" %>
+        <%= f.submit "次へ", class:"next-button text-white shadow mb-5" %>
       <% end %>
     </div>
   </div>
+  <%= image_tag 'thinker', class: "thinker" %>
 </div>
