@@ -1,9 +1,11 @@
 <header>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary pt-2">
+  <nav class="navbar navbar-expand-lg bg-dark-subtle py-3 d-flex justify-content-between">
     <%= render 'memos/slidebar/slidebar', memos: @memos %>
-    <%= link_to 'ONE MINUTE TALK', root_path, class: "navbar-brand fw-medium mx-auto ps-5" %>
+    <%= link_to 'ONE MINUTE TALK', root_path, class: "navbar-brand fw-medium ms-2" %>
+    <div class="d-flex">
     <%= link_to 'メモ一覧', memos_path, class: "btn btn-secondary me-2 d-none d-sm-block" %>
-    <button type="button" id="open" class="btn btn-secondary me-1">マイページ</button>
+    <button type="button" id="open" class="btn btn-secondary me-2">マイページ</button>
+    </div>
   </nav>
   <%= render 'shared/mypage' %>
 </header>

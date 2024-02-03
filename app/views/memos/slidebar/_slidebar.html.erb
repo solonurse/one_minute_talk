@@ -1,4 +1,4 @@
-<nav class="navbar d-sm-none bg-body-tertiary">
+<nav class="navbar d-sm-none">
   <button id='menu-open' class="ms-2"><span class="navbar-toggler-icon"></span></button>
   <div id='menu-panel' class='bg-body-tertiary'>
     <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
@@ -7,7 +7,7 @@
         <%= link_to '新規作成', new_memo_path, class: "btn btn-secondary text-center" %>
       </div>
       <div class="border border-secondary w-100"></div>
-      <h4 class="py-3">ブックマーク済みのメモ</h4>
+      <h4 class="py-3 text-center">ブックマーク済みのメモ</h4>
       <div id="bookmarked-slidebar-memo" class='list-group list-group-flush'>
         <% if @bookmark_memos.present? %>
           <% @bookmark_memos.each do |bookmark_memo| %>

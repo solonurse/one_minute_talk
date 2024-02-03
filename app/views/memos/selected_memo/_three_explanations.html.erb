@@ -1,8 +1,8 @@
-<div class='row justify-content-around mx-auto'>
+<div class='row justify-content-around mx-auto bg-body-secondary'>
   <div class='col-lg-12 container-fluid text-center border border-warning py-2'>
     <%= form_with model: selected_memo, url: pyramid_structure_path(selected_memo), local: true, data: { turbo: false } do |f| %>
       <div class="row justify-content-center me-5">
-        <div class="rounded-pill bg-secondary col-2 p-1 me-5 h-25">
+        <div class="rounded-pill bg-danger-subtle col-2 p-1 h-25">
           <h4>主張</h4>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <% selected_memo.explanations.each_with_index do |explanation, i| %>
           <%= f.text_area "element_#{i}", class: "border col-3", value: explanation[:element] %>
         <% end %>
-        <div class="rounded-pill bg-secondary col-1 p-1 h-25">
+        <div class="rounded-pill bg-danger-subtle col-1 p-1 h-25">
           <h4>要素</h4>
         </div>
         <div class="row">
@@ -43,7 +43,7 @@
         <% selected_memo.explanations.each_with_index do |explanation, i| %>
           <%= f.text_area "basis_#{i}", class: "border col-3", value: explanation[:basis], rows: 3 %>
         <% end %>
-        <div class="rounded-pill bg-secondary col-1 p-1 h-25">
+        <div class="rounded-pill bg-danger-subtle col-1 p-1 h-25">
           <h4>根拠</h4>
         </div>
       </div>
