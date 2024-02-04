@@ -28,10 +28,10 @@ class PyramidStructuresController < ApplicationController
     basis_index = 0
     params[:memo].each do |key, value|
       if key.to_s == "element_#{element_index}"
-        @elements[element_index] = value if params["element_#{element_index}"].present?
+        @elements[element_index] = value if params[:memo]["element_#{element_index}"].present?
         element_index += 1
       elsif key.to_s == "basis_#{basis_index}"
-        @basises[basis_index] = value if params["basis_#{basis_index}"].present?
+        @basises[basis_index] = value if params[:memo]["basis_#{basis_index}"].present?
         basis_index += 1
       else
         next

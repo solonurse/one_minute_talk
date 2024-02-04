@@ -2,12 +2,27 @@
   background-image: url(paper.jpg);
   background-size: cover;
   background-position: center;
+  font-family: 'Zen Kurenaido', sans-serif;
+}
+
+.yellow-marker {
+  display: inline-block;
+  background: linear-gradient(transparent 60%, #ffffcc 0%);
+}
+
+.red-marker {
+  display: inline-block;
+  background: linear-gradient(transparent 50%, #ffcccc 0%);
+}
+
+.blue-marker {
+  display: inline-block;
+  background:linear-gradient(transparent 50%, #ccffff 0%);
 }
 
 .thinker {
   width: 250px;
   height: 250px;
-  
 }
 
 .thinking-balloon {
