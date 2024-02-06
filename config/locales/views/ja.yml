@@ -3,6 +3,12 @@ ja:
     register: '登録'
     login: 'ログイン'
     update: '更新する'
+    user_new: '新規登録'
+    index_memo: 'メモ一覧'
+    create_memo: '新規作成'
+    mypage: 'マイページ'
+    next: '次へ'
+    sentence: '例文を作成する'
     message:
       delete_confirm: 'メモを削除してもよろしいですか？'
   users:
@@ -43,6 +49,8 @@ ja:
       updated: 'プロフィールを更新しました'
       update_failed: 'プロフィールの更新に失敗しました'
   memos:
+    new:
+      add_form: '入力フォームを追加'
     create:
       success: 'メモを作成しました'
       fail: '伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください'

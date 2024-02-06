@@ -1,6 +1,5 @@
 .top-container {
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
   background-image: url(top.jpg);
   background-size: cover;
   background-color:rgba(255,255,255,0.5);
@@ -28,32 +27,4 @@
   margin-left: -15px;
   border: 15px solid transparent;
   border-top: 15px solid #e0edff;
-}
-
-// モーダル
-#open,
-#close {
-  cursor: pointer;
-}
-
-#mask {
-  background: rgba(0, 0, 0, .6);
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  opacity: 0;
-  visibility: hidden;
-}
-
-#modal {
-  background: #fff;
-  max-width: 36rem;
-  padding: 2rem;
-  border-radius: .5rem;
-  position: absolute;
-  inset: 10rem 0 auto;
-  margin: auto;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
 }

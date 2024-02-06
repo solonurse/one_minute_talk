@@ -16,9 +16,9 @@
           <div id="element-container">
             <%= f.text_field :element_1, id: "element-form", class: 'form-control w-75 mx-auto' %>
           </div>
-          <div id="add-button" class="mt-3 p-1 btn btn-secondary">入力フォームを追加</div>
+          <div id="add-button" class="mt-3 p-1 btn btn-secondary"><%= t('.add_form') %></div>
         </div>
-        <%= f.submit "次へ", class:"next-button text-white shadow" %>
+        <%= f.submit t('defaults.next'), class:"next-button text-white shadow" %>
       <% end %>
     </div>
   </div>

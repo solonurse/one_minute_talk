@@ -24,26 +24,34 @@ class RegisterMemoForm
   def save
     return false if invalid?
     ActiveRecord::Base.transaction do
-      @memo_title = Memo.create!(title: title, user_id: user_id)
-      @explanations = {}
+      begin
+        @memo_title = Memo.create!(title: title, user_id: user_id)
+        @explanations = {}
 
-      (0..2).each do |i|
-        element = send("element_#{i}")
-        basis = send("basis_#{i}")
+        (0..2).each do |i|
+          element = send("element_#{i}")
+          basis = send("basis_#{i}")
 
-        if element.present? && basis.present?
-          @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis) 
-        elsif element.blank? && basis.blank?
-          next
-        else
-          @explanations = {}
-          return false
+          if element.present? && basis.present?
+            @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis) 
+          elsif element.blank? && basis.blank?
+            next
+          else
+            @explanations = {}
+            return false
+          end
         end
-      end
-      return false if @explanations.blank?
+        return false if @explanations.blank?
 
-      chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
-      @memo_title.create_example!(memo_id: @memo_title.id, sentence: chatgpt_sententce)
+        chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
+        @memo_title.create_example!(memo_id: @memo_title.id, sentence: chatgpt_sententce)
+      rescue Faraday::BadRequestError => e
+        @chatgpt_error_message = e.message
+        return false
+      rescue StandardError => e
+        @chatgpt_error_message = e.message
+        return false
+      end
     end
     true
   end

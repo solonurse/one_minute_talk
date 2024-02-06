@@ -1,43 +1,43 @@
-<div class='top-container'>
-  <div class='row'>
-    <div class='d-flex justify-content-evenly'>
-    <div class=" balloon border border-5 rounded-pill fs-4">言いたいことがありすぎて<br>まとまらない</div>
-    <div class="balloon border border-5 rounded-pill fs-4">よく相手から「何が言いたいの？」<br>と言われてしまう</div>
-    <div class="balloon border border-5 rounded-pill fs-4">毎回話すことを整理して<br>まとめるのが面倒</div>
-    </div>
-    <div class="text-center mx-auto">
-      <h1 class="bg-light bg-gradient py-2">伝えたいことが空回りしてしまうあなたへ</h1>
-      <h3 class='py-3'>ONE MINUTE TALKは思考を整理し、話したいことを1分間で相手に伝えられるアプリです</h3>
-    </div>
-    <div class="container mb-5">
-      <div class="row gap-3">
-        <div class="col-sm border border-4">
-          <h3 class='text-center'>メモ作成</h3>
-          <p>ユーザーは4つの項目を入力することで自身の考えを整理し、それをメモとして登録することでミーティング前などいつでも内容を振り返ることができます。</p>
-          <div class='text-center'>画像</div>
-        </div>
-        <div class="col-sm border border-4">
-          <h3 class='text-center'>自分の考えを可視化できる</h3>
-          <p>ピラミッドストラクチャーを使って情報を可視化することができます。</p>
-          <div class='text-center'>画像</div>
-          <div class="text-center py-2">
-            <button type="button" id="open" class="btn btn-info">ピラミッドストラクチャとは</button>
-          </div>
-          <section id="modal">
-            <p>ピラミッドストラクチャーとは、ロジカルシンキングの一つで、主にコミュニケーション（自分の主張とその根拠を示す）が目的のフレームワークです。<br>
-            ピラミッド上に主張と根拠を並べていくため、ピラミッドストラクチャーとよばれています。</p>
-            <div class="text-center">
-              <button id="close">閉じる</button>
-            </div>
-          </section>
-          <div id="mask"></div>
-        </div>
-        <div class="col-sm border border-4">
-          <h3 class='text-center'>例文を自動生成</h3>
-          <p>作成したメモ内容から１分以内で話すことができる例文が自動作成されます。<br>作成された例文は編集することができます。</p>
-          <div class='text-center'>画像</div>
-        </div>
+<div class="bg-body-secondary pb-5">
+  <div class='top-container container'>
+    <div class="row">
+      <div class='d-flex justify-content-between'>
+        <div class=" balloon border border-5 rounded-pill fs-4">言いたいことがありすぎて<br>まとまらない</div>
+        <div class="balloon border border-5 rounded-pill fs-4">よく相手から「何が言いたいの？」と言われてしまう</div>
+        <div class="balloon border border-5 rounded-pill fs-4">毎回話すことを整理してまとめるのが面倒</div>
+      </div>
+      <div>
+        <h1 class="my-5 fw-bold text-secondary text-center">伝えたいことが空回りしてしまう、そんなあなたへ</h1>
       </div>
     </div>
   </div>
-<div>
+  <div class="container">
+    <div class="row my-5 mx-auto">
+      <div class="col">
+        <h4 class='fw-bold text-center'>One Minute Talkは、話したいことを整理し、1分間で相手に伝わるように効果的に話すためのアプリです。</h4>
+      </div>
+    </div>
+    <div class="row gap-3 mx-auto">
+      <div class="col-sm bg-body">
+        <h3 class='text-center mt-3'>メモ作成</h3>
+        <p>ユーザーは4つの項目を入力することで、自分の考えを整理できます。<br>登録したメモはブックマークでき、ミーティング前などいつでも内容を振り返ることが可能です。</p>
+        <div class="text-center"><%= image_tag 'memo_index', size: '400x300' %></div>
+      </div>
+      <div class="col-sm bg-body">
+        <h3 class='text-center mt-3'>自分の考えを視覚化できる</h3>
+        <p>ピラミッドストラクチャーを使って情報を視覚化できます。<br>また、作成したピラミッドストラクチャーは編集することができます。</p>
+        <details class="accordion py-1">
+          <summary>ピラミッドストラクチャーとは?</summary>
+          <div class='text-center'><%= image_tag 'pyramid_structure', size: '300x200' %></div>
+          <p>ピラミッドストラクチャーとは、ロジカルシンキングの一つで、主にコミュニケーションが目的のフレームワークです。<br>
+          ピラミッド上に主張と根拠を並べていくため、ピラミッドストラクチャーとよばれています。</p>
+        </details>
+      </div>
+      <div class="col-sm bg-body">
+        <h3 class='text-center mt-3'>例文を自動生成</h3>
+        <p>作成したメモの内容から1分以内で話すための例文が自動的に生成されます。<br>作成された例文は編集することができます。</p>
+        <div class="text-center"><%= image_tag 'memo_create', size: '400x300' %></div>
+      </div>
+    </div>
+  </div>
+</div>

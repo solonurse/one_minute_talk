@@ -25,7 +25,7 @@
     <%= form_with model: selected_memo.example, local: true, data: { turbo: false } do |f| %>
       <h3 class="yellow-marker"><%= f.label :sentence %></h3>
       <%= f.text_area :sentence, id: "sentence-form", class: 'form-control border border-4 border-warning', value: selected_memo.example[:sentence], rows: 7 %>
-      <div class="text-center mt-2"><%= f.submit '例文を編集', class: "btn btn-primary" %></div>
+      <div class="text-center mt-2"><%= f.submit '例文を保存', class: "btn btn-primary" %></div>
     <% end %>
   </div>
   <div class="border border-4 border-warning col-sm-3 text-center mt-3 mb-5">

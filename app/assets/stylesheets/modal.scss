@@ -1,0 +1,26 @@
+#open,
+#close {
+  cursor: pointer;
+}
+
+#mask {
+  background: rgba(0, 0, 0, .6);
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#modal {
+  background: #fff;
+  max-width: 36rem;
+  padding: 2rem;
+  border-radius: .5rem;
+  position: absolute;
+  inset: 10rem 0 auto;
+  margin: auto;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+}

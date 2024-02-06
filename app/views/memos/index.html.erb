@@ -1,9 +1,9 @@
 <div class="container-fluid bg-body-tertiary">
   <div class="row">
-    <div class="col-sm-3 d-none d-sm-block border">
-      <ul class='menu-list list-group list-group-flush overflow-y-auto' style="height: 100vh;">
+    <div class="col-sm-3 d-none d-sm-block">
+      <ul class='menu-list list-group list-group-flush overflow-y-auto'>
         <div class="text-center py-4">
-          <%= link_to '新規作成', new_memo_path, class: "sign_in btn btn-secondary" %>
+          <%= link_to t('defaults.create_memo'), new_memo_path, class: "btn btn-outline-primary" %>
         </div>
         <div class="border border-secondary w-100"></div>
         <h4 class="py-3 mx-auto">ブックマーク済みのメモ</h4>
