@@ -24,7 +24,6 @@ class ChatgptService
             }
           ],
           temperature: 0.7, # 応答のランダム性を指定
-          max_tokens: 800,  # 応答の長さを指定
         },
       )
       response['choices'].first['message']['content']

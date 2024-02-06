@@ -1,11 +1,9 @@
 <header>
-  <nav class="navbar navbar-expand-lg bg-dark-subtle py-3">
-    <div class="container-fluid">
-      <%= link_to 'ONE MINUTE TALK', root_path, class: "navbar-brand fw-medium mx-auto ps-5" %>
+  <nav class="navbar navbar-expand-lg bg-body-secondary py-2 d-flex justify-content-between">
+      <%= link_to 'OneMinuteTalk', root_path, class: "navbar-brand fw-medium mx-auto ms-2" %>
       <div class='d-flex'>
-        <%= link_to '新規登録', new_user_path, class: "sign_up me-2 btn btn-secondary" %>
-        <%= link_to 'ログイン', login_path, class: "sign_in me-1 btn btn-secondary" %>
+        <%= link_to t('defaults.user_new'), new_user_path, class: "me-2 btn btn-outline-danger" %>
+        <%= link_to t('defaults.login'), login_path, class: "me-2 btn btn-outline-primary" %>
       </div>
-    </div>
   </nav>
 </header>

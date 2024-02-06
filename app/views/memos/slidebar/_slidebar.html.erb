@@ -4,7 +4,7 @@
     <button id='menu-close' class='m-2'><span class="btn-close"></span></button>
     <ul class=' menu-list list-group list-group-flush overflow-y-auto' style="height: 90vh;">
       <div class="text-center py-4">
-        <%= link_to '新規作成', new_memo_path, class: "btn btn-secondary text-center" %>
+        <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-primary" %>
       </div>
       <div class="border border-secondary w-100"></div>
       <h4 class="py-3 text-center">ブックマーク済みのメモ</h4>
@@ -12,7 +12,7 @@
         <% if @bookmark_memos.present? %>
           <% @bookmark_memos.each do |bookmark_memo| %>
             <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
-              <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none" %>
+              <%= link_to bookmark_memo.title, memo_path(bookmark_memo), class: "text-dark text-decoration-none me-5" %>
               <%= link_to bookmark_path(current_user.bookmarks.find_by(memo_id: bookmark_memo.id)), data: { turbo_method: :delete }, style: 'transform: scale(1.5);' do %>
                 <i class="bi bi-bookmark-check-fill"></i>
               <% end %>
@@ -28,7 +28,7 @@
         <% if @memos.present? %>
           <% @memos.each do |memo| %>
             <div class="list-group-item bg-body-tertiary w-100 d-flex justify-content-between">
-              <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none" %>
+              <%= link_to memo.title, memo_path(memo), class: "text-dark text-decoration-none me-5" %>
               <%= render 'memos/slidebar/slidebar_bookmark_button', memo: memo %>
             </div>
           <% end %>

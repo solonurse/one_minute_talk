@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 mx-auto bg-secondary-subtle mt-5">
+    <div class="mx-auto w-75 bg-secondary-subtle my-5 pb-3">
       <h1 class="text-center pt-5"><%= t(".title") %></h1>
       <%= form_with model: @user, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>

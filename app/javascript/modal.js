@@ -3,6 +3,12 @@ document.addEventListener('turbo:load', function() {
   const close = document.querySelector('#close');
   const modal = document.querySelector('#modal');
   const mask = document.querySelector('#mask');
+
+  const pyramidOpen = document.querySelector('#pyramid-open');
+  const pyramidClose = document.querySelector('#pyramid-close');
+  const pyramidModal = document.querySelector('#pyramid-modal');
+  const pyramidMask = document.querySelector('#pyramid-mask');
+
   const showkeyframes = {
     opacity: [0, 1],
     visibility: 'visible',
@@ -34,6 +40,26 @@ document.addEventListener('turbo:load', function() {
   if (mask) {
     mask.addEventListener('click', () => {
       close.click();
+    });
+  }
+
+  if (pyramidOpen) {
+    pyramidOpen.addEventListener('click', () => {
+      pyramidModal.animate(showkeyframes, options);
+      pyramidMask.animate(showkeyframes, options);
+    });
+  }
+
+  if (pyramidClose) {
+    pyramidClose.addEventListener('click', () => {
+      pyramidModal.animate(hidekeyframes, options);
+      pyramidMask.animate(hidekeyframes, options);
+    });
+  }
+
+  if (pyramidMask) {
+    pyramidMask.addEventListener('click', () => {
+      pyramidClose.click();
     });
   }
 });
