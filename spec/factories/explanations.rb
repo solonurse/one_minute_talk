@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :explanation do
-    element { "MyString" }
-    basis { "MyString" }
-    memo { nil }
+    element { "element" }
+    basis { "basis" }
+
+    association :memo
   end
 end

@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :memo do
-    title { "MyString" }
-    user { nil }
+    title {"title"}
+
+    association :user
   end
 end
