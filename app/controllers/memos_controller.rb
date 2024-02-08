@@ -8,7 +8,9 @@ class MemosController < ApplicationController
 
   def show
     @selected_memo = @memos.find_by(id: params[:id])
-    @example_length = @selected_memo.example[:sentence].length
+    example_data = @selected_memo&.example || { sentence: "" }
+    @example_sentence = example_data[:sentence]
+    @example_length = @example_sentence.length
     @speaking_time = (@example_length / 300.to_f * 60).round
     render :index
   end

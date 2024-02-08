@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :explanation do
-    element { "element" }
-    basis { "basis" }
+    sequence(:element) { |n| "element_#{n}" }
+    sequence(:basis) { |n| "basis_#{n}" }
 
     association :memo
   end
