@@ -71,43 +71,213 @@ RSpec.describe "Memos", type: :system do
   describe 'メモの新規作成' do
     before do
       visit new_memo_path
-      fill_in 'title', with: 'new_memo_title'
-      fill_in 'element_1', with: 'new_memo_element'
-      click_button '次へ'
+    end
+    
+    describe '1ページ目' do
+      context '伝えたいこと、伝えたい理由のフォームを入力' do
+        it '2ページ目に遷移成功する' do
+          fill_in 'title', with: 'new_memo_title'
+          fill_in 'element_1', with: 'new_memo_element'
+          click_button '次へ'
+          expect(current_path).to eq explanations_element_path
+        end  
+      end
+
+      context '伝えたいことのフォームが未入力' do
+        it '2ページ目に遷移失敗する' do
+          fill_in 'title', with: ''
+          fill_in 'element_1', with: 'new_memo_element'
+          click_button '次へ'
+          expect(page).to have_content "あなたが伝えたいことと伝えたい理由を入力してください"
+        end  
+      end
+
+      context '伝えたい理由のフォームが未入力' do
+        it '2ページ目に遷移失敗する' do
+          fill_in 'title', with: 'new_memo_title'
+          fill_in 'element_1', with: ''
+          click_button '次へ'
+          expect(page).to have_content "あなたが伝えたいことと伝えたい理由を入力してください"
+        end  
+      end
     end
 
-    it 'メモの新規作成が成功すると例文が作成される' do
+    describe '2ページ目' do
+      before do
+        fill_in 'title', with: 'new_memo_title'
+        fill_in 'element_1', with: 'new_memo_element'
+        click_button '次へ'
+      end
+
+      context '伝えたいこと、伝えたい理由、チェックボックスを入力' do
+        it '3ページ目に遷移成功する' do
+          fill_in 'title', with: 'new_memo_title'
+          fill_in 'element_element_1', with: 'new_memo_element'
+          check 'checkbox_element_1'
+          click_button '次へ'
+          expect(current_path).to eq explanations_basis_path
+        end
+      end
+
+      context '伝えたいことのフォームが未入力' do
+        it '3ページ目に遷移失敗する' do
+          fill_in 'title', with: ''
+          fill_in 'element_element_1', with: 'new_memo_element'
+          check 'checkbox_element_1'
+          click_button '次へ'
+          expect(page).to have_content "あなたが伝えたいことを入力、また伝えたい理由の中から特に伝えたいものを選択してください"
+        end
+      end
+
+      context '伝えたい理由のフォームが未入力' do
+        it '3ページ目に遷移失敗する' do
+          fill_in 'title', with: 'new_memo_title'
+          fill_in 'element_element_1', with: ''
+          check 'checkbox_element_1'
+          click_button '次へ'
+          expect(page).to have_content "あなたが伝えたいことを入力、また伝えたい理由の中から特に伝えたいものを選択してください"
+        end
+      end
     end
 
-    it '主張がない場合は新規作成に失敗する' do
-    end
+    describe '3ページ目' do
+      before do
+        fill_in 'title', with: 'new_memo_title'
+        fill_in 'element_1', with: 'new_memo_element'
+        click_button '次へ'
+        fill_in 'title', with: 'new_memo_title'
+        fill_in 'element_element_1', with: 'new_memo_element'
+        check 'checkbox_element_1'
+        click_button '次へ'
+      end
 
-    it '要素がない場合は新規作成に失敗する' do
-    end
+      context '伝えたいこと、伝えたい理由、なぜ伝えたいのかを入力' do
+        it 'メモが作成される' do
+          fill_in 'register_memo_form[title]', with: 'new_memo_title'
+          fill_in 'register_memo_form[element_0]', with: 'new_memo_element'
+          fill_in 'register_memo_form[basis_0]', with: 'new_memo_basis'
+          click_button '例文を作成する'
+          expect(current_path).to eq memos_path
+          expect(page).to have_content "メモを作成しました"
+        end
+      end
+    
+      context '伝えたいことのフォームが未入力' do
+        it 'メモの作成に失敗する' do
+          fill_in 'register_memo_form[title]', with: ''
+          fill_in 'register_memo_form[element_0]', with: 'new_memo_element'
+          fill_in 'register_memo_form[basis_0]', with: 'new_memo_basis'
+          click_button '例文を作成する'
+          expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+        end
+      end
 
-    it '根拠がない場合は新規作成に失敗する' do
+      context '伝えたい理由のフォームが未入力' do
+        it 'メモの作成に失敗する' do
+          fill_in 'register_memo_form[title]', with: 'new_memo_title'
+          fill_in 'register_memo_form[element_0]', with: ''
+          fill_in 'register_memo_form[basis_0]', with: 'new_memo_basis'
+          click_button '例文を作成する'
+          expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+        end
+      end
+
+      context 'なぜ伝えたいのかのフォームが未入力' do
+        it 'メモの作成に失敗する' do
+          fill_in 'register_memo_form[title]', with: 'new_memo_title'
+          fill_in 'register_memo_form[element_0]', with: 'new_memo_element'
+          fill_in 'register_memo_form[basis_0]', with: ''
+          click_button '例文を作成する'
+          expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+        end
+      end
+
+      context '伝えたい理由、なぜ伝えたいのかのフォームが未入力' do
+        it 'メモの作成に失敗する' do
+          fill_in 'register_memo_form[title]', with: 'new_memo_title'
+          fill_in 'register_memo_form[element_0]', with: ''
+          fill_in 'register_memo_form[basis_0]', with: ''
+          click_button '例文を作成する'
+          expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+        end
+      end
+
+      context '伝えたいこと、伝えたい理由、なぜ伝えたいのかのフォームが未入力' do
+        it 'メモの作成に失敗する' do
+          fill_in 'register_memo_form[title]', with: ''
+          fill_in 'register_memo_form[element_0]', with: ''
+          fill_in 'register_memo_form[basis_0]', with: ''
+          click_button '例文を作成する'
+          expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+        end
+      end
     end
   end
 
-  # describe 'メモの編集' do
-  #   it 'メモの編集が成功すると例文が作成される' do
-  #   end
+  describe 'メモの編集' do
+    before do
+      visit edit_memo_path(memo.id)
+    end
 
-  #   it '主張がない場合は編集に失敗する' do
-  #   end
+    context '伝えたいこと、伝えたい理由、なぜ伝えたいのかを入力' do
+      it 'メモの編集に成功する' do
+        fill_in 'register_memo_form[title]', with: 'edit_memo_title'
+        fill_in 'register_memo_form[element_0]', with: 'edit_memo_element'
+        fill_in 'register_memo_form[basis_0]', with: 'edit_memo_basis'
+        click_button '例文を作成する'
+        expect(current_path).to eq memos_path
+        expect(page).to have_content "メモを更新しました"
+      end
+    end
 
-  #   it '要素がない場合は編集に失敗する' do
-  #   end
+    context '伝えたいことのフォームが未入力' do
+      it 'メモの編集に失敗する' do
+        fill_in 'register_memo_form[title]', with: ''
+        fill_in 'register_memo_form[element_0]', with: 'edit_memo_element'
+        fill_in 'register_memo_form[basis_0]', with: 'edit_memo_basis'
+        click_button '例文を作成する'
+        expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+      end
+    end
 
-  #   it '根拠がない場合は編集に失敗する' do
-  #   end
-  # end
+    context '伝えたい理由のフォームが未入力' do
+      it 'メモの編集に失敗する' do
+        fill_in 'register_memo_form[title]', with: 'edit_memo_title'
+        fill_in 'register_memo_form[element_0]', with: ''
+        fill_in 'register_memo_form[basis_0]', with: 'edit_memo_basis'
+        click_button '例文を作成する'
+        expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+      end
+    end
 
-  # describe 'ブックマーク' do
-  #   it 'ブックマークボタンを押すとメモがブックマーク済みになる' do
-  #   end
+    context 'なぜ伝えたいのかのフォームが未入力' do
+      it 'メモの編集に失敗する' do
+        fill_in 'register_memo_form[title]', with: 'edit_memo_title'
+        fill_in 'register_memo_form[element_0]', with: 'edit_memo_element'
+        fill_in 'register_memo_form[basis_0]', with: ''
+        click_button '例文を作成する'
+        expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+      end
+    end
 
-  #   it 'ブックマーク済みボタンを押すとブックマークが解除される' do
-  #   end
-  # end
+    context '伝えたい理由、なぜ伝えたいのかのフォームが未入力' do
+      it 'メモの編集に失敗する' do
+        fill_in 'register_memo_form[title]', with: 'edit_memo_title'
+        fill_in 'register_memo_form[element_0]', with: ''
+        fill_in 'register_memo_form[basis_0]', with: ''
+        click_button '例文を作成する'
+        expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+      end
+    end
+
+    context '伝えたいこと、伝えたい理由、なぜ伝えたいのかのフォームが未入力' do
+      it 'メモの編集に失敗する' do
+        fill_in 'register_memo_form[title]', with: ''
+        fill_in 'register_memo_form[element_0]', with: ''
+        fill_in 'register_memo_form[basis_0]', with: ''
+        click_button '例文を作成する'
+        expect(page).to have_content "伝えたいこと、伝えたい理由、なぜ伝えたいのかをそれぞれ入力してください"
+      end
+    end
+  end
 end

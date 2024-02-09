@@ -23,11 +23,11 @@ class RegisterMemoForm
 
   def save
     return false if invalid?
-    ActiveRecord::Base.transaction do
-      begin
+    begin
+      ActiveRecord::Base.transaction do
         @memo_title = Memo.create!(title: title, user_id: user_id)
-        @explanations = {}
 
+        @explanations = {}
         (0..2).each do |i|
           element = send("element_#{i}")
           basis = send("basis_#{i}")
@@ -37,34 +37,32 @@ class RegisterMemoForm
           elsif element.blank? && basis.blank?
             next
           else
-            @explanations = {}
-            return false
+            raise ActiveRecord::Rollback
           end
         end
-        return false if @explanations.blank?
+        raise ActiveRecord::Rollback if @explanations.blank?
 
         chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
         @memo_title.create_example!(memo_id: @memo_title.id, sentence: chatgpt_sententce)
-      rescue Faraday::BadRequestError => e
-        @chatgpt_error_message = e.message
-        return false
-      rescue StandardError => e
-        @chatgpt_error_message = e.message
-        return false
       end
+    rescue Faraday::BadRequestError => e
+      @chatgpt_error_message = e.message
+      return false
+    rescue StandardError => e
+      @chatgpt_error_message = e.message
+      return false
     end
-    true
   end
 
   def update
     return false if invalid?
     @memo_title = Memo.find_by(id: memo_id, user_id: user_id)
 
-    ActiveRecord::Base.transaction do
-      begin
+    begin
+      ActiveRecord::Base.transaction do
         @memo_title.update!(title: title)
-        @explanations = {}
 
+        @explanations = {}
         (0..2).each do |i|
           # 更新するデータ
           element = send("element_#{i}")
@@ -80,23 +78,21 @@ class RegisterMemoForm
           elsif element.blank? && basis.blank?
             @memo_title.explanations[i].destroy! if @memo_title.explanations[i].present?
           else
-            @explanations = {}
-            return false
+            raise ActiveRecord::Rollback
           end
         end
-        return false if @explanations.blank?
+        raise ActiveRecord::Rollback if @explanations.blank?
 
         chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
         @memo_title.example.update!(sentence: chatgpt_sententce)
-      rescue Faraday::BadRequestError => e
-        @chatgpt_error_message = e.message
-        return false
-      rescue StandardError => e
-        @chatgpt_error_message = e.message
-        return false
       end
+    rescue Faraday::BadRequestError => e
+      @chatgpt_error_message = e.message
+      return false
+    rescue StandardError => e
+      @chatgpt_error_message = e.message
+      return false
     end
-    true
   end
 
   private
