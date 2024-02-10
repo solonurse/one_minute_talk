@@ -13,8 +13,7 @@ class PyramidStructuresController < ApplicationController
       end
       redirect_to memo_path(@selected_memo), success: t('.success')
     else
-      flash.now[:danger] = t('.fail')
-      render 'memos/index', status: :unprocessable_entity
+      redirect_to memo_path(@selected_memo), danger: t('.fail')
     end
   end
 
