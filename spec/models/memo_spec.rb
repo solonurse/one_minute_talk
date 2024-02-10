@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Memo, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-
   it "タイトルがある場合、登録できる" do
     memo = build(:memo)
     expect(memo).to be_valid

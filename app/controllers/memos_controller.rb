@@ -4,8 +4,6 @@ class MemosController < ApplicationController
 
   def index; end
 
-  def new; end
-
   def show
     @selected_memo = @memos.find_by(id: params[:id])
     example_data = @selected_memo&.example || { sentence: "" }
@@ -15,21 +13,7 @@ class MemosController < ApplicationController
     render :index
   end
 
-  def create
-    @register_memo_form = RegisterMemoForm.new(register_memo_params)
-
-    if @register_memo_form.save
-      redirect_to memos_path, success: t('.success')
-    else
-      save_failed_memo_params
-      if @register_memo_form.chatgpt_error_message.present?
-        flash.now[:danger] = t('.example_fail')
-      else
-        flash.now[:danger] = t('.fail')
-      end
-      render 'explanations/basis', status: :unprocessable_entity
-    end
-  end
+  def new; end
 
   def edit
     @register_memo_form = RegisterMemoForm.new
@@ -38,14 +22,26 @@ class MemosController < ApplicationController
     @memo_explanations = @memo.explanations
     @elements = {}
     @basises = {}
-    (0..2).each do |i|
+    3.times do |i|
       if @memo_explanations[i]
         element = @memo_explanations[i].element
         basis = @memo_explanations[i].basis
       end
 
-      @elements[i] = element.present? ? element : ''
-      @basises[i] = basis.present? ? basis : ''
+      @elements[i] = element.presence || ''
+      @basises[i] = basis.presence || ''
+    end
+  end
+
+  def create
+    @register_memo_form = RegisterMemoForm.new(register_memo_params)
+
+    if @register_memo_form.save
+      redirect_to memos_path, success: t('.success')
+    else
+      save_failed_memo_params
+      flash.now[:danger] = @register_memo_form.chatgpt_error_message.present? ? t('.example_fail') : t('.fail')
+      render 'explanations/basis', status: :unprocessable_entity
     end
   end
 
@@ -56,11 +52,7 @@ class MemosController < ApplicationController
       redirect_to memos_path, success: t('.success')
     else
       update_failed_memo_params
-      if @register_memo_form.chatgpt_error_message.present?
-        flash.now[:danger] = t('.example_fail')
-      else
-        flash.now[:danger] = t('.fail')
-      end
+      flash.now[:danger] = @register_memo_form.chatgpt_error_message.present? ? t('.example_fail') : t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -81,7 +73,7 @@ class MemosController < ApplicationController
     @title = params[:register_memo_form][:title]
     @elements = {}
     index = 0
-    params[:register_memo_form].each do |key, value|
+    params[:register_memo_form].each_key do |key|
       if key.to_s.start_with?('element_')
         @elements[index] = params[:register_memo_form]["element_#{index}"]
         index += 1
@@ -90,8 +82,7 @@ class MemosController < ApplicationController
   end
 
   def update_memo_params
-    memo_id = params[:id]
-    params.require(:register_memo_form).permit(:title, :element_0, :element_1, :element_2, :basis_0, :basis_1, :basis_2).merge(user_id: current_user.id, memo_id: memo_id)
+    params.require(:register_memo_form).permit(:title, :element_0, :element_1, :element_2, :basis_0, :basis_1, :basis_2).merge(user_id: current_user.id, memo_id: params[:id])
   end
 
   def update_failed_memo_params

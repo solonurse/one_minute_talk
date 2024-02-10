@@ -8,7 +8,7 @@ class ExplanationsController < ApplicationController
       render :element
     else
       flash.now[:danger] = t('.fail')
-			render 'memos/new', status: :unprocessable_entity
+      render 'memos/new', status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class ExplanationsController < ApplicationController
     if @title.present? && @checkbox_key.present? && @elements.present?
       @register_memo_form = RegisterMemoForm.new
     else
-      @elements = params.select { |key, value| key.to_s.start_with?('element_') }
+      @elements = params.select { |key, _value| key.to_s.start_with?('element_') }
       flash.now[:danger] = t('.fail')
       render :element, status: :unprocessable_entity
     end
@@ -30,21 +30,21 @@ class ExplanationsController < ApplicationController
 
   def elements_params
     # element_~関連のパラメーターを取得し、nilと空白の値を排除
-    @elements = params.select { |key, value| key.to_s.start_with?('element_') && !value.nil? && !value.blank? }
+    @elements = params.select { |key, value| key.to_s.start_with?('element_') && value.present? }
   end
 
   def element_checkbox_params
     # チェックボックスのキーを取得
     @checkbox_key = params.keys.select { |key| key.to_s.start_with?('checkbox_') && params[key].to_i == 1 }
     # チェックボックスのキーの数字を取得
-    @checkbox_num = @checkbox_key.map { |key| key.to_s.gsub('checkbox_', '')}
+    @checkbox_num = @checkbox_key.map { |key| key.to_s.gsub('checkbox_', '') }
 
     # チェックボックスと同じ数字のelement_キーを取得
     @elements = {}
     index = 0
     @checkbox_num.each do |num|
       @elements[index] = params["element_#{num}"] if params["element_#{num}"].present?
-      index +=1
+      index += 1
     end
   end
 end

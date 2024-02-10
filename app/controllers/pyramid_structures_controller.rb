@@ -7,7 +7,7 @@ class PyramidStructuresController < ApplicationController
     if @title.present? && @elements.present? && @basises.present? && @elements.size == @basises.size
       ActiveRecord::Base.transaction do
         @selected_memo.update!(title: @title)
-        (0..2).each do |i|
+        3.times do |i|
           @selected_memo.explanations[i].update!(element: @elements[i], basis: @basises[i]) if @selected_memo.explanations[i].present?
         end
       end

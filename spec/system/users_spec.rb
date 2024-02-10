@@ -80,7 +80,7 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'ログイン' do
-    let(:user) {create(:user)}
+    let(:user) { create(:user) }
 
     before do
       visit login_path

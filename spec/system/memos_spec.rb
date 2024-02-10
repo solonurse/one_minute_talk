@@ -15,7 +15,7 @@ RSpec.describe "Memos", type: :system do
     before do
       visit memo_path(memo.id)
     end
-    
+
     describe 'ピラミッドストラクチャーの変更' do
       it '主張、要素、根拠がある場合、編集を保存できる' do
         fill_in 'memo[title]', with: 'title'
@@ -72,7 +72,7 @@ RSpec.describe "Memos", type: :system do
     before do
       visit new_memo_path
     end
-    
+
     describe '1ページ目' do
       context '伝えたいこと、伝えたい理由のフォームを入力' do
         it '2ページ目に遷移成功する' do
@@ -80,7 +80,7 @@ RSpec.describe "Memos", type: :system do
           fill_in 'element_1', with: 'new_memo_element'
           click_button '次へ'
           expect(current_path).to eq explanations_element_path
-        end  
+        end
       end
 
       context '伝えたいことのフォームが未入力' do
@@ -89,7 +89,7 @@ RSpec.describe "Memos", type: :system do
           fill_in 'element_1', with: 'new_memo_element'
           click_button '次へ'
           expect(page).to have_content "あなたが伝えたいことと伝えたい理由を入力してください"
-        end  
+        end
       end
 
       context '伝えたい理由のフォームが未入力' do
@@ -98,7 +98,7 @@ RSpec.describe "Memos", type: :system do
           fill_in 'element_1', with: ''
           click_button '次へ'
           expect(page).to have_content "あなたが伝えたいことと伝えたい理由を入力してください"
-        end  
+        end
       end
     end
 
@@ -161,7 +161,7 @@ RSpec.describe "Memos", type: :system do
           expect(page).to have_content "メモを作成しました"
         end
       end
-    
+
       context '伝えたいことのフォームが未入力' do
         it 'メモの作成に失敗する' do
           fill_in 'register_memo_form[title]', with: ''
