@@ -10,7 +10,7 @@ Rails.application.config.sorcery.submodules = [:reset_password, :remember_me]
 Rails.application.config.sorcery.configure do |config|
   # 2週間ログインを維持
   config.user_config do |user|
-    user.remember_me_for = 1209600
+    user.remember_me_for = 1_209_600
   end
   # -- core --
   # What controller action to call for non-authenticated users. You can also

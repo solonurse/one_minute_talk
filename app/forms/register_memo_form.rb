@@ -1,5 +1,4 @@
 class RegisterMemoForm
-
   include ActiveModel::Model
   include ActiveModel::Attributes
   include ActiveModel::Validations
@@ -23,17 +22,18 @@ class RegisterMemoForm
 
   def save
     return false if invalid?
+
     begin
       ActiveRecord::Base.transaction do
         @memo_title = Memo.create!(title: title, user_id: user_id)
 
         @explanations = {}
-        (0..2).each do |i|
+        3.times do |i|
           element = send("element_#{i}")
           basis = send("basis_#{i}")
 
           if element.present? && basis.present?
-            @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis) 
+            @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis)
           elsif element.blank? && basis.blank?
             next
           else
@@ -45,17 +45,15 @@ class RegisterMemoForm
         chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
         @memo_title.create_example!(memo_id: @memo_title.id, sentence: chatgpt_sententce)
       end
-    rescue Faraday::BadRequestError => e
+    rescue Faraday::BadRequestError, StandardError => e
       @chatgpt_error_message = e.message
-      return false
-    rescue StandardError => e
-      @chatgpt_error_message = e.message
-      return false
+      false
     end
   end
 
   def update
     return false if invalid?
+
     @memo_title = Memo.find_by(id: memo_id, user_id: user_id)
 
     begin
@@ -63,7 +61,7 @@ class RegisterMemoForm
         @memo_title.update!(title: title)
 
         @explanations = {}
-        (0..2).each do |i|
+        3.times do |i|
           # 更新するデータ
           element = send("element_#{i}")
           basis = send("basis_#{i}")
@@ -86,12 +84,9 @@ class RegisterMemoForm
         chatgpt_sententce = ChatgptService.new.chat(questions_for_chatgpt)
         @memo_title.example.update!(sentence: chatgpt_sententce)
       end
-    rescue Faraday::BadRequestError => e
+    rescue Faraday::BadRequestError, StandardError => e
       @chatgpt_error_message = e.message
-      return false
-    rescue StandardError => e
-      @chatgpt_error_message = e.message
-      return false
+      false
     end
   end
 
@@ -103,6 +98,6 @@ class RegisterMemoForm
       example_sententce += "\nReason #{i} : #{@explanations[i][:element]}
                             \nSpecific example of reason #{i} : #{@explanations[i][:basis]}"
     end
-    return example_sententce
+    example_sententce
   end
 end

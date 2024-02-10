@@ -4,6 +4,15 @@ class PasswordResetsController < ApplicationController
   # パスワードリセット申請画面へレンダリング
   def new; end
 
+  # パスワードのリセットフォーム画面へ遷移するアクション
+  def edit
+    @token = params[:id]
+    # トークン情報をもとにユーザーの照合を行う
+    @user = User.load_from_reset_password_token(@token)
+    # ユーザーが見つからなければ、ログインページに戻る
+    return not_authenticated if @user.blank?
+  end
+
   # パスワードのリセットを要求するアクション
   def create
     @user = User.find_by(email: params[:email])
@@ -13,15 +22,6 @@ class PasswordResetsController < ApplicationController
     @user&.deliver_reset_password_instructions!
 
     redirect_to login_path, success: t('.success')
-  end
-
-  # パスワードのリセットフォーム画面へ遷移するアクション
-  def edit
-    @token = params[:id]
-    # トークン情報をもとにユーザーの照合を行う
-    @user = User.load_from_reset_password_token(@token)
-    # ユーザーが見つからなければ、ログインページに戻る
-    return not_authenticated if @user.blank?
   end
 
   # ユーザーがパスワードのリセットフォームを送信したときに発生
