@@ -1,8 +1,15 @@
+@font-face {
+  font-family: 'Zen Kurenaido';
+  src: url('./font/Zen_Kurenaido.woff2')format("woff2");
+}
+
 .memo-container {
-  background-image: url(paper.jpg);
+  background-image: url(paper.png);
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   font-family: 'Zen Kurenaido', sans-serif;
+  font-display: swap;
 }
 
 .yellow-marker {
