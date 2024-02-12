@@ -1,7 +1,9 @@
 .top-container {
   min-width: 100%;
-  background-image: url(top.jpg);
+  background-image: url(top.png);
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   background-color:rgba(255,255,255,0.5);
   background-blend-mode:lighten;
 }
