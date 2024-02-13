@@ -15,10 +15,7 @@ class RegisterMemoForm
   attribute :user_id
   attribute :memo_id
 
-  with_options presence: true do
-    validates :title
-    validates :user_id
-  end
+  validates :title, :user_id, presence: true
 
   def save
     return false if invalid?
