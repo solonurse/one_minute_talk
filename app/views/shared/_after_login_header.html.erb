@@ -3,8 +3,8 @@
     <%= render 'memos/slidebar/slidebar', memos: @memos %>
     <%= link_to 'OneMinuteTalk', root_path, class: "navbar-brand fw-medium ms-2" %>
     <div class="d-flex">
-    <%= link_to t('defaults.index_memo'), memos_path, class: "btn me-1 d-none d-sm-block" %>
-    <button type="button" id="open" class="btn me-2"><%= t('defaults.mypage') %></button>
+    <%= link_to t('defaults.index_memo'), memos_path, class: "btn btn-link text-decoration-none text-dark me-1 d-none d-sm-block" %>
+    <button type="button" id="open" class="btn btn-link text-decoration-none text-dark"><%= t('defaults.mypage') %></button>
     </div>
   </nav>
   <%= render 'shared/mypage' %>

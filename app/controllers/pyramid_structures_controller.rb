@@ -7,8 +7,8 @@ class PyramidStructuresController < ApplicationController
     if @title.present? && @elements.present? && @basises.present? && @elements.size == @basises.size
       ActiveRecord::Base.transaction do
         @selected_memo.update!(title: @title)
-        3.times do |i|
-          @selected_memo.explanations[i].update!(element: @elements[i], basis: @basises[i]) if @selected_memo.explanations[i].present?
+        @selected_memo.explanations.each_with_index do |explanation, i|
+          explanation.update!(element: @elements[i], basis: @basises[i]) if explanation.present?
         end
       end
       redirect_to memo_path(@selected_memo), success: t('.success')

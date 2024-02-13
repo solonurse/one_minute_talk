@@ -24,12 +24,9 @@ class MemosController < ApplicationController
     @basises = {}
     3.times do |i|
       if @memo_explanations[i]
-        element = @memo_explanations[i].element
-        basis = @memo_explanations[i].basis
+        @elements[i] = @memo_explanations[i].element.presence || ''
+        @basises[i] = @memo_explanations[i].basis.presence || ''
       end
-
-      @elements[i] = element.presence || ''
-      @basises[i] = basis.presence || ''
     end
   end
 
