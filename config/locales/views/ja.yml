@@ -4,6 +4,7 @@ ja:
     login: 'ログイン'
     update: '更新する'
     user_new: '新規登録'
+    google_login: 'Googleでログイン'
     index_memo: 'メモ一覧'
     create_memo: '新規作成'
     mypage: 'マイページ'
@@ -24,6 +25,7 @@ ja:
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
+      to_user_registration_page: '新規登録ページへ'
       password_reset: 'パスワードを忘れた方はこちら'
       remember: 'ログイン状態を維持'
     create:
