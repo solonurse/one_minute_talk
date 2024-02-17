@@ -165,10 +165,13 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = Rails.application.credentials.dig(:google, :google_client_id)
   config.google.secret = Rails.application.credentials.dig(:google, :google_client_secret)
-  config.google.callback_url = Rails.env.production? ? ? 
-                                "https://one-minute-talk.fly.dev/google_login_api/callback" : 
-                                "http://localhost:3000/google_login_api/callback"
-  config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.callback_url = Rails.env.production? ? 
+                                "https://one-minute-talk.fly.dev/oauth/callback?provider=google" : 
+                                # "https://one-minute-talk.fly.dev/google_login_api/callback?provider=google" : 
+                                "http://localhost:3000/oauth/callback?provider=google"
+                                # "http://localhost:3000/google_login_api/callback?provider=google"
+                                # "http://0.0.0.0:3000/oauth/callback?provider=google"
+  config.google.user_info_mapping = {:email => "email", :name => "name"}
   # config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
