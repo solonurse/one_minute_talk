@@ -18,11 +18,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   post "oauth/callback" => "oauths#callback"
-  # post "google_login_api/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" 
-  # get "google_login_api/callback" => "oauths#callback" 
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
-  # get "google_login_api/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   resources :users, only: %i[new create]
   resources :password_resets, only: %i[new create edit update]
