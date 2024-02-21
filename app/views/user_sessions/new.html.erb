@@ -19,10 +19,14 @@
           <%= f.submit t('defaults.login'), class: 'btn btn-primary' %>
         </div>
       <% end %>
-      <div class="text-center my-3">
-        <%= link_to auth_at_provider_path(provider: :google), class: "me-2 btn btn-primary" do %>
+      <div class="text-center my-4">
+        <%= link_to auth_at_provider_path(provider: :google), method: :post, data: { turbo: false}, class: "me-2 mt-2 btn btn-primary" do %>
           <i class="bi bi-google"></i>
           <%= (t 'defaults.google_login') %>
+        <% end %>
+        <%= link_to auth_at_provider_path(provider: :github), method: :post, data: { turbo: false}, class: "me-2 mt-2 btn btn-dark" do %>
+          <i class="bi bi-github"></i>
+          <%= (t 'defaults.github_login') %>
         <% end %>
       </div>
       <div class="text-center pt-2">

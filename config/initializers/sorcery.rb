@@ -85,7 +85,7 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `[]`
   #
   #利用する外部サービスのプロバイダーを指定
-  config.external_providers = %i[google]
+  config.external_providers = %i[google github]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -141,11 +141,11 @@ Rails.application.config.sorcery.configure do |config|
   # config.instagram.user_info_mapping = {:email => "username"}
   # config.instagram.access_permissions = ["basic", "public_content", "follower_list", "comments", "relationships", "likes"]
   #
-  # config.github.key = ""
-  # config.github.secret = ""
-  # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
-  # config.github.user_info_mapping = {:email => "name"}
-  # config.github.scope = ""
+  config.github.key = Rails.application.credentials.dig(:github, :key)
+  config.github.secret = Rails.application.credentials.dig(:github, :secret)
+  config.github.callback_url = "http://localhost:3000/oauth/callback?provider=github"
+  config.github.user_info_mapping = {:email => "email", name: "name", remote_avatar_url: "avatar_url"}
+  config.github.scope = "user:email"
   #
   # config.paypal.key = ""
   # config.paypal.secret = ""
@@ -166,8 +166,8 @@ Rails.application.config.sorcery.configure do |config|
   config.google.key = Rails.application.credentials.dig(:google, :google_client_id)
   config.google.secret = Rails.application.credentials.dig(:google, :google_client_secret)
   config.google.callback_url = Rails.env.production? ? 
-                                "https://one-minute-talk.fly.dev/oauth/callback?provider=google" : 
-                                "http://localhost:3000/oauth/callback?provider=google"
+                                'https://one-minute-talk.fly.dev/oauth/callback?provider=google' : 
+                                'http://localhost:3000/oauth/callback?provider=google'
   config.google.user_info_mapping = {:email => "email", :name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
