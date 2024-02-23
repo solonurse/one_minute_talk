@@ -22,7 +22,7 @@ class RegisterMemoForm
 
     begin
       ActiveRecord::Base.transaction do
-        @memo_title = Memo.create!(title: title, user_id: user_id)
+        @memo_title = Memo.create!(title:, user_id:)
 
         @explanations = {}
         3.times do |i|
@@ -30,7 +30,7 @@ class RegisterMemoForm
           basis = send("basis_#{i}")
 
           if element.present? && basis.present?
-            @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis)
+            @explanations[i] = @memo_title.explanations.create!(element:, basis:)
           elsif element.blank? && basis.blank?
             next
           else
@@ -51,11 +51,11 @@ class RegisterMemoForm
   def update
     return false if invalid?
 
-    @memo_title = Memo.find_by(id: memo_id, user_id: user_id)
+    @memo_title = Memo.find_by(id: memo_id, user_id:)
 
     begin
       ActiveRecord::Base.transaction do
-        @memo_title.update!(title: title)
+        @memo_title.update!(title:)
 
         @explanations = {}
         3.times do |i|
@@ -65,10 +65,10 @@ class RegisterMemoForm
 
           if element.present? && basis.present?
             if @memo_title.explanations[i].present?
-              @memo_title.explanations[i].update!(element: element, basis: basis)
+              @memo_title.explanations[i].update!(element:, basis:)
               @explanations[i] = @memo_title.explanations[i]
             else
-              @explanations[i] = @memo_title.explanations.create!(element: element, basis: basis)
+              @explanations[i] = @memo_title.explanations.create!(element:, basis:)
             end
           elsif element.blank? && basis.blank?
             @memo_title.explanations[i].destroy! if @memo_title.explanations[i].present?
