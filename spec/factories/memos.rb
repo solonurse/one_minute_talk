@@ -4,8 +4,8 @@ FactoryBot.define do
 
     trait :with_explanation_and_example do
       after(:create) do |memo|
-        create(:explanation, memo: memo)
-        create(:example, memo: memo)
+        create(:explanation, memo:)
+        create(:example, memo:)
       end
       association :user
     end

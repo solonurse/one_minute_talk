@@ -21,14 +21,14 @@
       <div class="col-sm bg-body">
         <h3 class='text-center mt-3'>メモ作成</h3>
         <p>ユーザーは4つの項目を入力することで、自分の考えを整理できます。<br>登録したメモはブックマークでき、ミーティング前などいつでも内容を振り返ることが可能です。</p>
-        <div class="text-center"><%= image_tag 'memo_index', size: '400x267', alt: '作成したメモの画面' %></div>
+        <div class="text-center"><%= image_tag 'memo_index', size: '400x267', alt: '作成したメモの画面', loading: "lazy" %></div>
       </div>
       <div class="col-sm bg-body">
         <h3 class='text-center mt-3'>自分の考えを視覚化できる</h3>
         <p>ピラミッドストラクチャーを使って情報を視覚化できます。<br>また、作成したピラミッドストラクチャーは編集することができます。</p>
         <details class="accordion py-1">
           <summary>ピラミッドストラクチャーとは?</summary>
-          <div class='text-center'><%= image_tag 'pyramid_structure', size: '300x200', alt: 'ピラミッドストラクチャー図' %></div>
+          <div class='text-center'><%= image_tag 'pyramid_structure', size: '300x200', alt: 'ピラミッドストラクチャー図', loading: "lazy" %></div>
           <p>ピラミッドストラクチャーとは、ロジカルシンキングの一つで、主にコミュニケーションが目的のフレームワークです。<br>
           ピラミッド上に主張と根拠を並べていくため、ピラミッドストラクチャーとよばれています。</p>
         </details>
@@ -36,7 +36,7 @@
       <div class="col-sm bg-body">
         <h3 class='text-center mt-3'>例文を自動生成</h3>
         <p>作成したメモの内容から1分以内で話すための例文が自動的に生成されます。<br>作成された例文は編集することができます。</p>
-        <div class="text-center"><%= image_tag 'memo_create', size: '400x267', alt: '例文作成画面' %></div>
+        <div class="text-center"><%= image_tag 'memo_create', size: '400x267', alt: '例文作成画面', loading: "lazy" %></div>
       </div>
     </div>
   </div>

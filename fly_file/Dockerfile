@@ -78,6 +78,7 @@ USER 1000:1000
 
 # Entrypoint sets up the container.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+RUN rm -f tmp/pids/server.pid
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

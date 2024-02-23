@@ -45,7 +45,7 @@
         <%= f.submit t('defaults.create_sentence'), class: "example-button text-white shadow mb-5" %>
       <% end %>  
       <div class="loading-wrap">
-        <%= image_tag "/assets/loading" %>
+        <%= image_tag "/assets/loading", loading: "lazy" %>
         <p class="fw-bold">作成中</p>
       </div>
     </div>
