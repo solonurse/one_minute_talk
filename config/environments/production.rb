@@ -18,7 +18,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
   # config.public_file_server.enabled = false
@@ -71,7 +71,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
 
+  # メール送信設定
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address:"smtp.gmail.com",
+    domain: 'gmail.com',
+    user_name: Rails.application.credentials.gmail[:mail_address],
+    password: Rails.application.credentials.gmail[:app_password],
+    authentication: :plain,
+    enable_starttls: true,
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -94,4 +106,6 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.default_url_options = { protocol: 'https', host: 'https://one-minute-talk.fly.dev/' }
 end
