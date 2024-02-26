@@ -15,7 +15,7 @@ class OauthsController < ApplicationController
         # ユーザーが存在しない場合はプロバイダ情報を元に新規ユーザーを作成し、ログイン
         signup_and_login(provider)
         redirect_to memos_path, success: "#{provider.titleize}アカウントでログインしました"
-      rescue StandardError => e
+      rescue StandardError
         redirect_to login_path, danger: "#{provider.titleize}アカウントでのログインに失敗しました。"
       end
     end
