@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_memos, through: :bookmarks, source: :memo
+  has_many :reminders, dependent: :destroy
+  has_many :reminder_memos, through: :reminders, source: :memo
 
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

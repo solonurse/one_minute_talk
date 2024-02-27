@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_19_120554) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_27_010312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_120554) do
     t.index ["user_id"], name: "index_memos_on_user_id"
   end
 
+  create_table "reminders", force: :cascade do |t|
+    t.boolean "reminder", default: false, null: false
+    t.datetime "start_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "memo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memo_id"], name: "index_reminders_on_memo_id"
+    t.index ["user_id", "memo_id"], name: "index_reminders_on_user_id_and_memo_id", unique: true
+    t.index ["user_id"], name: "index_reminders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -82,4 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_120554) do
   add_foreign_key "examples", "memos"
   add_foreign_key "explanations", "memos"
   add_foreign_key "memos", "users"
+  add_foreign_key "reminders", "memos"
+  add_foreign_key "reminders", "users"
 end

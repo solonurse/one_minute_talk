@@ -31,6 +31,11 @@ module Myapp
     # アプリケーションでの利用を許可するロケールのリストを渡す（設定必須）
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
+    # Rails自体のアプリケーションの時刻
+    config.time_zone = "Tokyo"
+    # DBを読み書きする際に、DBに記録されている時間をどのタイムゾーンで読み込むかの設定
+    config.active_record.default_timezone = :local
+
     config.generators do |g|
       g.skip_routes true
       g.helper false
