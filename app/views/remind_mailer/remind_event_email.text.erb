@@ -1,0 +1,11 @@
+こんにちは<%= @event.user.name %>様
+===========================================
+
+明日は以下の予定がありますので、お知らせいたします。
+
+<%= @event.memo.title %>
+
+例文
+<%= @event.memo.example.sentence %>
+
+●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %>
