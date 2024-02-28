@@ -4,9 +4,13 @@
 
 <h2><%= @event.memo.title %></h2><br>
 
-<h3>例文</h3><br>
+<h3>例文</h3>
 <p><%= @event.memo.example.sentence %></p><br>
 
 <p>
-  <span>●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %></span><br>
+  <span>●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %></span>
+</p><br>
+
+<p>
+  <%= link_to '詳細を確認する', memo_path(@event.memo.id) %>
 </p>

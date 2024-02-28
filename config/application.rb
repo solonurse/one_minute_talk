@@ -14,7 +14,13 @@ module Myapp
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
+    # libディレクトリの以下のファイル以外を自動読み込みする
     config.autoload_lib(ignore: %w(assets tasks))
+
+    #wheneverのタスクはlibの中に置く
+    config.autoload_paths += Dir["#{config.root}/lib/**/"] #lib配下でディレクトリ分けする場合
+    #本番はeagar_load
+    config.eager_load_paths += Dir["#{config.root}/lib/**/"]
 
     # Configuration for the application, engines, and railties goes here.
     #
