@@ -9,3 +9,5 @@
 <%= @event.memo.example.sentence %>
 
 ●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %>
+
+<%= link_to '詳細を確認する', memo_path(@event.memo.id) %>
