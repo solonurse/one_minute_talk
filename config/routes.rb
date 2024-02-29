@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[create destroy]
   resources :examples, only: %i[update]
   resources :pyramid_structures, only: %i[update]
+  resources :reminders, only: %i[create update destroy]
 
   post 'explanations/element'
   post 'explanations/basis'

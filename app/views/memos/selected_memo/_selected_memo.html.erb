@@ -19,8 +19,29 @@
 <% else %>
   <%= render 'memos/selected_memo/three_explanations', selected_memo: selected_memo %>
 <% end %>
+<!-- リマインダー -->
+<div class='py-3'>
+  <%= form_with model: selected_memo.reminder do |f| %>
+    <div class='d-flex pb-1'>
+        <i class="bi bi-bell text-primary"></i>
+        <div>リマインダー</div>
+    </div>
+    <div class='d-flex gap-1'>
+      <div class='form-group'>
+        <%= f.label :started_at, '予定日', class: 'control-labe pt-2' %>
+      </div>
+      <div class='form-group'>
+        <%= f.date_field :started_at, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.time_field :started_at, class: 'form-control' %>
+      </div>
+      <%= f.submit '保存', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
 <!-- 例文 -->
-<div class="row mx-auto pt-5">
+<div class="row mx-auto">
   <div class="col-sm-9">
     <%= form_with model: selected_memo.example, local: true, data: { turbo: false } do |f| %>
       <h3 class="yellow-marker">例文</h3>
@@ -28,6 +49,7 @@
       <div class="text-center mt-2"><%= f.submit t('defaults.save_sentence'), class: "btn btn-primary" %></div>
     <% end %>
   </div>
+  <!-- ストップウォッチ -->
   <div class="border border-4 border-warning col-sm-3 text-center mt-3 mb-5">
     <div class="yellow-marker my-3">文字数　<span id="sentence-counter"><%= @example_length %></span></div>
     <div class="border border-secondary w-100"></div>
