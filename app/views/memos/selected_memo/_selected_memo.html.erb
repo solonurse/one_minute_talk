@@ -21,20 +21,20 @@
 <% end %>
 <!-- リマインダー -->
 <div class='py-3'>
-  <%= form_with model: selected_memo.reminder do |f| %>
+  <%= form_with model: reminder, local: true, data: { turbo: false } do |f| %>
     <div class='d-flex pb-1'>
-        <i class="bi bi-bell text-primary"></i>
-        <div>リマインダー</div>
+      <i class="bi bi-bell text-primary"></i>
+      <div>リマインダー</div>
     </div>
     <div class='d-flex gap-1'>
       <div class='form-group'>
         <%= f.label :started_at, '予定日', class: 'control-labe pt-2' %>
       </div>
       <div class='form-group'>
-        <%= f.date_field :started_at, class: 'form-control' %>
+        <%= f.date_field :started_at, class: 'form-control', value: start_time %>
       </div>
       <div class='form-group'>
-        <%= f.time_field :started_at, class: 'form-control' %>
+        <%= f.time_field :started_at, class: 'form-control', value: start_time %>
       </div>
       <%= f.submit '保存', class: "btn btn-primary" %>
     </div>
