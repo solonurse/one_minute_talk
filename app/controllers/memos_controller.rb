@@ -6,14 +6,16 @@ class MemosController < ApplicationController
 
   def show
     @selected_memo = @memos.find_by(id: params[:id])
-    
+
     session[:memo_id] = nil if session[:memo_id].present?
     session[:memo_id] = @selected_memo.id
     if @selected_memo.reminder.present?
       @reminder = @selected_memo.reminder
+      @on_off = @reminder.reminder ? 'ON' : 'OFF'
       @start_time = @reminder.start_at
     else
       @reminder = Reminder.new
+      @on_off = 'OFF'
     end
 
     example_data = @selected_memo&.example || { sentence: "" }

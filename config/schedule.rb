@@ -27,17 +27,17 @@ rails_env = Rails.env.to_sym
 set :environment, rails_env
 
 # コンテナ起動時の環境変数をcron独自の環境変数にパス
-ENV.each { |k,v| env(k,v) }
+ENV.each { |k, v| env(k, v) }
 
 # ログをアウトプットする
-set :output, "#{Rails.root}/log/cron.log"
+set :output, Rails.root.join('log', 'cron.log')
 
 # 毎日AM9:30に実行
 every 1.day, at: '00:00' do
   begin
     # Batch::RemindEventクラスのremind_eventの処理を実行する
     runner "Batch::RemindEvent.remind_event"
-  rescue => e
+  rescue StandardError => e
     Rails.logger.error("aborted rails runner")
     raise e
   end
