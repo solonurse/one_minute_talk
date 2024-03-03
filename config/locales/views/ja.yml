@@ -81,3 +81,12 @@ ja:
     update:
       success: 'メモを更新しました'
       fail: '主張、要素、根拠は全て入力してください'
+  reminders:
+    create:
+      create_remidner_success: 'リマインダーを登録しました'
+      create_reminder_fail: 'リマインダーを登録できませんでした'
+      set_schedule: '予定日を設定してください'
+    update:
+      update_remidner_success: 'リマインダーを更新しました'
+      update_reminder_fail: 'リマインダーを更新できませんでした'
+      set_schedule: '予定日を設定してください'
