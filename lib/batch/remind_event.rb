@@ -1,6 +1,6 @@
 class Batch::RemindEvent
   def self.remind_event
-    events = Reminder.all
+    events = Reminder.includes(:user, :memo)
     events.each do |event|
       # AM9:00との時間差を時間単位で算出する
       time_different = (event.start_at - Time.now.in_time_zone("Tokyo")) / 3600

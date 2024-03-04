@@ -1,16 +1,16 @@
 <p>こんにちは<%= @event.user.name %>様</p>
 
-<p>明日は以下の予定がありますので、お知らせいたします。</p><br>
+<p>明日は以下の予定がありますので、お知らせいたします。</p>
 
-<h2><%= @event.memo.title %></h2><br>
+<h3><%= @event.memo.title %></h3>
 
-<h3>例文</h3>
-<p><%= @event.memo.example.sentence %></p><br>
+<h4>例文</h4>
+<p><%= @event.memo.example.sentence %></p>
 
 <p>
   <span>●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %></span>
-</p><br>
+</p>
 
 <p>
-  <%= link_to '詳細を確認する', memo_path(@event.memo.id) %>
+  <%= link_to '詳細を確認する', memo_url(@event.memo.id) %>
 </p>

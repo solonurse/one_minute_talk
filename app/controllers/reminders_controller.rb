@@ -46,7 +46,9 @@ class RemindersController < ApplicationController
   private
 
   def reminder_params
-    @schedule = params[:reminder][:started_at]
+    started_at_date = params[:reminder][:started_at_date]
+    started_at_time = params[:reminder][:started_at_time]
+    @schedule = Time.zone.parse("#{started_at_date} #{started_at_time}")
     @reminder_boolean_type = params[:reminder][:reminder]
   end
 end

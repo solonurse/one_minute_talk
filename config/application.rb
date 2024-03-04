@@ -17,10 +17,8 @@ module Myapp
     # libディレクトリの以下のファイル以外を自動読み込みする
     config.autoload_lib(ignore: %w(assets tasks))
 
-    # wheneverのタスクはlibの中に置く
-    config.autoload_paths += Dir["#{config.root}/lib/**/"] # lib配下でディレクトリ分けする場合
-    # 本番はeagar_load
-    config.eager_load_paths += Dir["#{config.root}/lib/**/"]
+    # lib配下のディレクトリを読み込む
+    config.paths.add 'lib', eager_load: true
 
     # Configuration for the application, engines, and railties goes here.
     #
