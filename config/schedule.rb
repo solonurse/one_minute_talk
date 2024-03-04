@@ -30,10 +30,10 @@ set :environment, rails_env
 ENV.each { |k, v| env(k, v) }
 
 # ログをアウトプットする
-set :output, Rails.root.join('log', 'cron.log')
+set :output, 'log/cron.log'
 
 # 毎日AM9:30に実行
-every 1.day, at: '00:00' do
+every 1.day, at: '09:00 am' do
   begin
     # Batch::RemindEventクラスのremind_eventの処理を実行する
     runner "Batch::RemindEvent.remind_event"
