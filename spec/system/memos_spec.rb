@@ -9,8 +9,6 @@ RSpec.describe "Memos", type: :system do
     login_as(memo.user)
   end
 
-  # pending "add some scenarios (or delete) #{__FILE__}"
-
   describe 'メモ詳細' do
     before do
       visit memo_path(memo.id)
@@ -64,6 +62,93 @@ RSpec.describe "Memos", type: :system do
         fill_in 'example[sentence]', with: long_sentence
         click_button '例文を保存する'
         expect(page).to have_content "例文は300文字以内で入力してください"
+      end
+    end
+
+    describe 'リマインダーの新規作成' do
+      context 'トグルスイッチがONの場合' do
+        it '予定日がある場合、登録できる' do
+          fill_in 'reminder[started_at_date]', with: Time.current.strftime('%Y-%m-%d')
+          fill_in 'reminder[started_at_time]', with: Time.current.strftime('%H:%M')
+          check 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "リマインダーを登録しました"
+        end
+    
+        it '予定日がない場合、登録できない' do
+          fill_in 'reminder[started_at_date]', with: nil
+          fill_in 'reminder[started_at_time]', with: nil
+          check 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "予定日を設定してください"
+        end
+      end
+    
+      context 'トグルスイッチがOFFの場合' do
+        it '予定日がある場合、登録できる' do
+          fill_in 'reminder[started_at_date]', with: Time.current.strftime('%Y-%m-%d')
+          fill_in 'reminder[started_at_time]', with: Time.current.strftime('%H:%M')
+          uncheck 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "リマインダーを登録しました"
+        end
+    
+        it '予定日がない場合、登録できない' do
+          fill_in 'reminder[started_at_date]', with: nil
+          fill_in 'reminder[started_at_time]', with: nil
+          uncheck 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "予定日を設定してください"
+        end
+      end
+    end
+
+    describe 'リマインダーの更新' do
+      context 'トグルスイッチがONの場合' do
+        let(:reminder_on_start_at) { create(:reminder, :later_day) }
+        it '予定日がある場合、登録できる' do
+          fill_in 'reminder[started_at_date]', with: reminder_on_start_at.start_at.strftime('%Y-%m-%d')
+          fill_in 'reminder[started_at_time]', with: reminder_on_start_at.start_at.strftime('%H:%M')
+          check 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "リマインダーを登録しました"
+        end
+    
+        it '予定日がない場合、登録できない' do
+          fill_in 'reminder[started_at_date]', with: nil
+          fill_in 'reminder[started_at_time]', with: nil
+          check 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "予定日を設定してください"
+        end
+      end
+    
+      context 'トグルスイッチがOFFの場合' do
+        let(:reminder_off_start_at) { create(:reminder, :later_day_reminder_false) }
+        it '予定日がある場合、登録できる' do
+          fill_in 'reminder[started_at_date]', with: reminder_off_start_at.start_at.strftime('%Y-%m-%d')
+          fill_in 'reminder[started_at_time]', with: reminder_off_start_at.start_at.strftime('%H:%M')
+          uncheck 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "リマインダーを登録しました"
+        end
+    
+        let(:reminder_off_without_start_at) { create(:reminder, :later_day_reminder_false,) }
+        it '予定日がない場合、登録できない' do
+          fill_in 'reminder[started_at_date]', with: nil
+          fill_in 'reminder[started_at_time]', with: nil
+          uncheck 'reminder[reminder]'
+          click_button '保存' 
+
+          expect(page).to have_content "予定日を設定してください"
+        end
       end
     end
   end

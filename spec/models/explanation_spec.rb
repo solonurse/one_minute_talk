@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Explanation, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
 
   let(:explanation) { build(:explanation) }
   it "要素、根拠がある場合に登録できる" do
