@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
 
   it "ユーザー名、メール、パスワードがある場合、新規登録できる" do
     user = build(:user)
