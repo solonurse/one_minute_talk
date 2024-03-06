@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_memos
-    @memos = current_user.memos.includes(:explanations, :example).order(created_at: :desc) if logged_in?
+    @memos = current_user.memos.includes(:explanations, :example, :reminder).order(created_at: :desc) if logged_in?
   end
 
   def set_bookmark_memos
