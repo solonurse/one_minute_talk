@@ -41,8 +41,8 @@
       <% if @selected_memo.present? %>
         <%= render 'memos/selected_memo/selected_memo', selected_memo: @selected_memo, reminder: @reminder, start_time: @start_time , on_off: @on_off %>
       <% else %>
-        <div class="mt-5" style="height: 100vh;>
-          <h2 class="text-center fw-bold">メモを選択してください</h2>
+        <div class="text-center mt-5" style="height: 100vh;>
+          <h2 class="fw-bold">メモを選択してください</h2>
           <%= month_calendar do |date| %>
             <%= date.day %>
           <% end %>
