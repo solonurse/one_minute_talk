@@ -32,7 +32,7 @@ ENV.each { |k, v| env(k, v) }
 # ログをアウトプットする
 set :output, 'log/cron.log'
 
-# 毎日AM9:30に実行
+# 毎日AM9:00に実行
 every 1.day, at: '09:00 am' do
   begin
     # Batch::RemindEventクラスのremind_eventの処理を実行する
