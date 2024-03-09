@@ -3,14 +3,14 @@ class RemindersController < ApplicationController
 
   def create
     if @schedule.present? && @reminder_boolean_type == '1'
-      reminder = Reminder.new(user_id: current_user.id, memo_id: session[:memo_id], start_at: @schedule, reminder: true)
+      reminder = Reminder.new(user_id: current_user.id, memo_id: session[:memo_id], start_time: @schedule, reminder: true)
       if reminder.save
         flash[:success] = t('.create_remidner_success')
       else
         flash[:danger] = t('.create_reminder_fail')
       end
     elsif @schedule.present? && @reminder_boolean_type == '0'
-      reminder = Reminder.new(user_id: current_user.id, memo_id: session[:memo_id], start_at: @schedule, reminder: false)
+      reminder = Reminder.new(user_id: current_user.id, memo_id: session[:memo_id], start_time: @schedule, reminder: false)
       if reminder.save
         flash[:success] = t('.create_remidner_success')
       else
@@ -25,14 +25,14 @@ class RemindersController < ApplicationController
   def update
     if @schedule.present? && @reminder_boolean_type == '1'
       reminder = Reminder.find_by(id: params[:id])
-      if reminder.update(start_at: @schedule, reminder: true)
+      if reminder.update(start_time: @schedule, reminder: true)
         flash[:success] = t('.update_remidner_success')
       else
         flash[:danger] = t('.update_reminder_fail')
       end
     elsif @schedule.present? && @reminder_boolean_type == '0'
       reminder = Reminder.find_by(id: params[:id])
-      if reminder.update(start_at: @schedule, reminder: false)
+      if reminder.update(start_time: @schedule, reminder: false)
         flash[:success] = t('.update_remidner_success')
       else
         flash[:danger] = t('.update_reminder_fail')

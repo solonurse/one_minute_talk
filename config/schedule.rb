@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-require File.expand_path(File.dirname(__FILE__) + "/environment")
+require File.expand_path("#{File.dirname(__FILE__)}/environment")
 
 # Railsアプリケーションの実行環境（development、production、testなど）をシンボルで取得し、変数 rails_env に代入
 rails_env = Rails.env.to_sym
@@ -34,11 +34,9 @@ set :output, 'log/cron.log'
 
 # 毎日AM9:00に実行
 every 1.day, at: '09:00 am' do
-  begin
-    # Batch::RemindEventクラスのremind_eventの処理を実行する
-    runner "Batch::RemindEvent.remind_event"
-  rescue StandardError => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
+  # Batch::RemindEventクラスのremind_eventの処理を実行する
+  runner "Batch::RemindEvent.remind_event"
+rescue StandardError => e
+  Rails.logger.error("aborted rails runner")
+  raise e
 end

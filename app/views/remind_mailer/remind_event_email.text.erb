@@ -8,6 +8,6 @@
 例文
 <%= @event.memo.example.sentence %>
 
-●開始予定日時：<%= @event.start_at.strftime('%Y/%m/%d %H:%M') %>
+●開始予定日時：<%= @event.start_time.strftime('%Y/%m/%d %H:%M') %>
 
 <%= link_to '詳細を確認する', memo_url(@event.memo.id) %>

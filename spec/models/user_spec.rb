@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   it "ユーザー名、メール、パスワードがある場合、新規登録できる" do
     user = build(:user)
     expect(user).to be_valid
