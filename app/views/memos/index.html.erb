@@ -3,7 +3,7 @@
     <div class="col-sm-3 d-none d-sm-block">
       <ul class='menu-list list-group list-group-flush overflow-y-auto'>
         <div class="text-center py-4">
-          <%= link_to t('defaults.create_memo'), new_memo_path, class: "btn btn-outline-primary" %>
+          <%= link_to t('defaults.create_memo'), new_memo_path, class: "btn btn-outline-danger" %>
         </div>
         <div class="border border-secondary w-100"></div>
         <h4 class="py-3 mx-auto">ブックマーク済みのメモ</h4>
@@ -41,12 +41,7 @@
       <% if @selected_memo.present? %>
         <%= render 'memos/selected_memo/selected_memo', selected_memo: @selected_memo, reminder: @reminder, start_time: @start_time , on_off: @on_off %>
       <% else %>
-        <div class="text-center mt-5" style="height: 100vh;>
-          <h2 class="fw-bold">メモを選択してください</h2>
-          <%= month_calendar do |date| %>
-            <%= date.day %>
-          <% end %>
-        </div>
+        <%= render 'schedule', reminders: @reminders %>
       <% end %>
     </div>
   </div>

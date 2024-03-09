@@ -1,10 +1,12 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-body-secondary py-2 d-flex justify-content-between">
-    <%= render 'memos/slidebar/slidebar', memos: @memos %>
-    <%= link_to 'OneMinuteTalk', root_path, class: "navbar-brand fw-medium ms-2" %>
     <div class="d-flex">
-    <%= link_to t('defaults.index_memo'), memos_path, class: "btn btn-link text-decoration-none text-dark me-1 d-none d-sm-block" %>
-    <button type="button" id="open" class="btn btn-link text-decoration-none text-dark"><%= t('defaults.mypage') %></button>
+      <%= render 'memos/slidebar/slidebar', memos: @memos %>
+      <%= link_to 'OneMinuteTalk', memos_path, class: "navbar-brand ms-1 mt-1 fw-medium" %>
+    </div>
+    <div class="d-flex">
+      <%= link_to t('defaults.index_memo'), memos_path, class: "btn btn-link text-decoration-none text-dark" %>
+      <button type="button" id="open" class="btn btn-link text-decoration-none text-dark"><%= t('defaults.mypage') %></button>
     </div>
   </nav>
   <%= render 'shared/mypage' %>

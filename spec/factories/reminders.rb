@@ -3,7 +3,7 @@ FactoryBot.define do
     reminder { true }
 
     after(:create) do |reminder|
-      create(:memo, :with_explanation_and_example, reminder: reminder)
+      create(:memo, :with_explanation_and_example, reminder:)
     end
 
     transient do
@@ -11,14 +11,14 @@ FactoryBot.define do
     end
 
     trait :later_day do
-      start_at { Time.current + one_day }
+      start_time { Time.current + one_day }
 
       association :user
       association :memo
     end
 
     trait :later_day_reminder_false do
-      start_at { Time.current + one_day }
+      start_time { Time.current + one_day }
       reminder { false }
 
       association :user

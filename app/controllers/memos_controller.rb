@@ -2,7 +2,9 @@ class MemosController < ApplicationController
   skip_before_action :set_memos, only: %i[destroy]
   skip_before_action :set_bookmark_memos, only: %i[update destroy]
 
-  def index; end
+  def index
+    @reminders = Reminder.where(user_id: current_user.id).includes(:memo)
+  end
 
   def show
     @selected_memo = @memos.find_by(id: params[:id])
@@ -12,7 +14,7 @@ class MemosController < ApplicationController
     if @selected_memo.reminder.present?
       @reminder = @selected_memo.reminder
       @on_off = @reminder.reminder ? 'ON' : 'OFF'
-      @start_time = @reminder.start_at
+      @start_time = @reminder.start_time
     else
       @reminder = Reminder.new
       @on_off = 'OFF'

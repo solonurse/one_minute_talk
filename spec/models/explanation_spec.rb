@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Explanation, type: :model do
-
   let(:explanation) { build(:explanation) }
   it "要素、根拠がある場合に登録できる" do
     expect(explanation).to be_valid

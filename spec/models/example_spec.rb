@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Example, type: :model do
-
   let(:sentence) { build(:example) }
   it "300文字以内の場合に登録できる" do
     expect(sentence).to be_valid

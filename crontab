@@ -1,1 +1,1 @@
-0 9 * * * bundle exec runner /rails/lib/batch/remind_event.rb  Batch::RemindEvent.remind_event
+0 9 * * * bundle exec rails runner Batch::RemindEvent.remind_event
