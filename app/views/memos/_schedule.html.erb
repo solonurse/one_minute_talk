@@ -1,13 +1,11 @@
 <div class="mt-5" style="height: 100vh;>
   <h4 class="fw-bold fs-4">メモ一覧</h4>
-  <%= turbo_frame_tag 'calendar' do %>
-    <%= month_calendar events: reminders do |date, reminders| %>
-      <%= date.day %>
-      <% reminders.each do |reminder| %>
-        <div>
-          <%= link_to reminder.memo.title, memo_path(reminder.memo.id) %>
-        </div>
-      <% end %>
+  <%= month_calendar events: reminders do |date, reminders| %>
+    <%= date.day %>
+    <% reminders.each do |reminder| %>
+      <div>
+        <%= link_to reminder.memo.title, memo_path(reminder.memo.id) %>
+      </div>
     <% end %>
   <% end %>
 </div>
