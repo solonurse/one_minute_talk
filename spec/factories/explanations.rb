@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:element) { |n| "element_#{n}" }
     sequence(:basis) { |n| "basis_#{n}" }
 
-    association :memo
+    memo
   end
 end

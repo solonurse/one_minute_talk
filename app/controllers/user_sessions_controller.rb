@@ -2,7 +2,7 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   skip_before_action :set_memos
   skip_before_action :set_bookmark_memos
-  
+
   def new; end
 
   def create

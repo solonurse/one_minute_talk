@@ -13,16 +13,16 @@ FactoryBot.define do
     trait :later_day do
       start_time { Time.current + one_day }
 
-      association :user
-      association :memo
+      user
+      memo
     end
 
     trait :later_day_reminder_false do
       start_time { Time.current + one_day }
       reminder { false }
 
-      association :user
-      association :memo
+      user
+      memo
     end
   end
 end

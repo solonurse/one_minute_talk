@@ -26,8 +26,8 @@ class RegisterMemoForm
 
         @explanations = {}
         3.times do |i|
-          element = send("element_#{i}")
-          basis = send("basis_#{i}")
+          element = send(:"element_#{i}")
+          basis = send(:"basis_#{i}")
 
           if element.present? && basis.present?
             @explanations[i] = @memo_title.explanations.create!(element:, basis:)
@@ -60,8 +60,8 @@ class RegisterMemoForm
         @explanations = {}
         3.times do |i|
           # 更新するデータ
-          element = send("element_#{i}")
-          basis = send("basis_#{i}")
+          element = send(:"element_#{i}")
+          basis = send(:"basis_#{i}")
 
           if element.present? && basis.present?
             if @memo_title.explanations[i].present?

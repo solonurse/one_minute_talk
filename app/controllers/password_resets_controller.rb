@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
     # トークン情報をもとにユーザーの照合を行う
     @user = User.load_from_reset_password_token(@token)
     # ユーザーが見つからなければ、ログインページに戻る
-    return not_authenticated if @user.blank?
+    not_authenticated if @user.blank?
   end
 
   # パスワードのリセットを要求するアクション
@@ -29,6 +29,7 @@ class PasswordResetsController < ApplicationController
     @token = params[:id]
     @user = User.load_from_reset_password_token(@token)
     return not_authenticated if @user.blank?
+
     # 確認用のパスワードが正しく入力されたかどうかを確認
     @user.password_confirmation = params[:user][:password_confirmation]
 

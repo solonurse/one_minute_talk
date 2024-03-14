@@ -4,14 +4,13 @@ class ApplicationController < ActionController::Base
   before_action :set_memos
   before_action :set_bookmark_memos
 
-	private
+  private
 
-	def not_authenticated
+  def not_authenticated
     redirect_to login_path, danger: "ログインしてください"
   end
 
   def set_memos
-    # binding.pry
     @memos = current_user.memos.includes(:explanations, :example, :reminder).order(created_at: :desc) if logged_in?
   end
 
