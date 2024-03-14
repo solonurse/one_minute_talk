@@ -7,9 +7,10 @@ FactoryBot.define do
         create(:explanation, memo:)
         create(:example, memo:)
       end
-      association :user
+
+      user
     end
 
-    association :user
+    user
   end
 end

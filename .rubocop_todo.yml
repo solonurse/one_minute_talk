@@ -12,7 +12,7 @@
 # Include: **/*.gemfile, **/Gemfile, **/gems.rb
 Bundler/OrderedGems:
   Exclude:
-    - 'Gemfile'
+    # - 'Gemfile'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -20,15 +20,15 @@ Bundler/OrderedGems:
 # SupportedStyles: outdent, indent
 Layout/AccessModifierIndentation:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/users_controller.rb'
+    # - 'app/controllers/application_controller.rb'
+    # - 'app/controllers/users_controller.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment.
 Layout/CommentIndentation:
   Exclude:
-    - 'app/mailers/user_mailer.rb'
+    # - 'app/mailers/user_mailer.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -36,14 +36,14 @@ Layout/CommentIndentation:
 # SupportedStylesAlignWith: start_of_line, def
 Layout/DefEndAlignment:
   Exclude:
-    - 'app/controllers/application_controller.rb'
+    # - 'app/controllers/application_controller.rb'
 
 # Offense count: 7
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterGuardClause:
   Exclude:
-    - 'app/controllers/password_resets_controller.rb'
-    - 'bin/bundle'
+    # - 'app/controllers/password_resets_controller.rb'
+    # - 'bin/bundle'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -51,7 +51,7 @@ Layout/EmptyLineAfterGuardClause:
 # SupportedStyles: empty_lines, no_empty_lines
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
-    - 'db/schema.rb'
+    # - 'db/schema.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -59,14 +59,14 @@ Layout/EmptyLinesAroundBlockBody:
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
 Layout/EmptyLinesAroundClassBody:
   Exclude:
-    - 'app/mailers/user_mailer.rb'
+    # - 'app/mailers/user_mailer.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
-    - 'db/migrate/20231225014250_sorcery_core.rb'
+    # - 'db/migrate/20231225014250_sorcery_core.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -74,8 +74,8 @@ Layout/ExtraSpacing:
 # SupportedStyles: normal, indented_internal_methods
 Layout/IndentationConsistency:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/mailers/user_mailer.rb'
+    # - 'app/controllers/application_controller.rb'
+    # - 'app/mailers/user_mailer.rb'
 
 # Offense count: 22
 # This cop supports safe autocorrection (--autocorrect).
@@ -83,27 +83,27 @@ Layout/IndentationConsistency:
 # SupportedStyles: spaces, tabs
 Layout/IndentationStyle:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/mailers/user_mailer.rb'
+    # - 'app/controllers/application_controller.rb'
+    # - 'app/controllers/users_controller.rb'
+    # - 'app/mailers/user_mailer.rb'
 
 # Offense count: 13
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Width, AllowedPatterns.
 Layout/IndentationWidth:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/mailers/user_mailer.rb'
-    - 'config/initializers/sentry.rb'
+    # - 'app/controllers/application_controller.rb'
+    # - 'app/controllers/users_controller.rb'
+    # - 'app/mailers/user_mailer.rb'
+    # - 'config/initializers/sentry.rb'
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
 Layout/LeadingCommentSpace:
   Exclude:
-    - 'app/controllers/users_controller.rb'
-    - 'app/mailers/user_mailer.rb'
+    # - 'app/controllers/users_controller.rb'
+    # - 'app/mailers/user_mailer.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -111,14 +111,14 @@ Layout/LeadingCommentSpace:
 # SupportedStyles: aligned, indented, indented_relative_to_receiver
 Layout/MultilineMethodCallIndentation:
   Exclude:
-    - 'config/environments/production.rb'
+    # - 'config/environments/production.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment.
 Layout/SpaceBeforeFirstArg:
   Exclude:
-    - 'db/migrate/20231225014250_sorcery_core.rb'
+    # - 'db/migrate/20231225014250_sorcery_core.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -127,13 +127,13 @@ Layout/SpaceBeforeFirstArg:
 # SupportedStylesForEmptyBrackets: space, no_space
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
-    - 'config/environments/production.rb'
+    # - 'config/environments/production.rb'
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceInsidePercentLiteralDelimiters:
   Exclude:
-    - 'Gemfile'
+    # - 'Gemfile'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -141,27 +141,27 @@ Layout/SpaceInsidePercentLiteralDelimiters:
 # SupportedStyles: final_newline, final_blank_line
 Layout/TrailingEmptyLines:
   Exclude:
-    - 'app/controllers/users_controller.rb'
-    - 'config/importmap.rb'
+    # - 'app/controllers/users_controller.rb'
+    # - 'config/importmap.rb'
 
 # Offense count: 8
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowInHeredoc.
 Layout/TrailingWhitespace:
   Exclude:
-    - 'Gemfile'
-    - 'app/controllers/static_pages_controller.rb'
-    - 'app/controllers/user_sessions_controller.rb'
-    - 'config/application.rb'
-    - 'config/initializers/sorcery.rb'
-    - 'config/routes.rb'
+    # - 'Gemfile'
+    # - 'app/controllers/static_pages_controller.rb'
+    # - 'app/controllers/user_sessions_controller.rb'
+    # - 'config/application.rb'
+    # - 'config/initializers/sorcery.rb'
+    # - 'config/routes.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
   Exclude:
-    - 'config/initializers/sentry.rb'
+    # - 'config/initializers/sentry.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
@@ -193,7 +193,7 @@ Metrics/PerceivedComplexity:
 # This cop supports safe autocorrection (--autocorrect).
 Style/BlockComments:
   Exclude:
-    - 'spec/spec_helper.rb'
+    # - 'spec/spec_helper.rb'
 
 # Offense count: 18
 # Configuration parameters: AllowedConstants.
@@ -211,7 +211,7 @@ Style/FrozenStringLiteralComment:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/GlobalStdStream:
   Exclude:
-    - 'config/environments/production.rb'
+    # - 'config/environments/production.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -220,47 +220,47 @@ Style/GlobalStdStream:
 # SupportedShorthandSyntax: always, never, either, consistent
 Style/HashSyntax:
   Exclude:
-    - 'Gemfile'
+    # - 'Gemfile'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/IfUnlessModifier:
   Exclude:
-    - 'bin/bundle'
+    # - 'bin/bundle'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinDigits, Strict, AllowedNumbers, AllowedPatterns.
 Style/NumericLiterals:
   Exclude:
-    - 'db/schema.rb'
+    # - 'db/schema.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: PreferredDelimiters.
 Style/PercentLiteralDelimiters:
   Exclude:
-    - 'config/application.rb'
+    # - 'config/application.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/PerlBackrefs:
   Exclude:
-    - 'bin/bundle'
+    # - 'bin/bundle'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeForConstants.
 Style/RedundantFetchBlock:
   Exclude:
-    - 'config/puma.rb'
+    # - 'config/puma.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowMultipleReturnValues.
 Style/RedundantReturn:
   Exclude:
-    - 'app/controllers/password_resets_controller.rb'
+    # - 'app/controllers/password_resets_controller.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).

@@ -114,6 +114,7 @@ RSpec.describe "Users", type: :system do
 
   describe 'ログアウト' do
     let(:user) { create(:user) }
+
     it 'ログアウトされる' do
       login_as(user)
       click_link 'ログアウト'
