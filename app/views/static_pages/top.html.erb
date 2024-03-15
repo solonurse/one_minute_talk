@@ -17,13 +17,14 @@
         <h2 class='fw-bold text-center'>OneMinuteTalkは話したいことを整理し、1分間で相手に伝わるように効果的に話すためのアプリです。</h2>
       </div>
     </div>
-    <div class="row gap-3 mx-auto">
-      <div class="col-sm bg-body">
+    <div class="row gap-4 mx-auto justify-content-center bg-secondary-subtle py-4">
+      <h2 class="text-center text-muted fw-semibold">使い方</h2>
+      <div class="col-sm-5 bg-body shadow rounded">
         <h3 class='text-center mt-3'>メモ作成</h3>
         <p>ユーザーは4つの項目を入力することで、自分の考えを整理できます。<br>登録したメモはブックマークでき、ミーティング前などいつでも内容を振り返ることが可能です。</p>
-        <div class="text-center"><%= image_tag 'memo_index', size: '400x267', alt: '作成したメモの画面', loading: "lazy" %></div>
+        <div class="text-center"><%= image_tag 'memo_index', style: 'width: 100%; height: auto;', alt: '作成したメモの画面', loading: "lazy" %></div>
       </div>
-      <div class="col-sm bg-body">
+      <div class="col-sm-5 bg-body shadow rounded">
         <h3 class='text-center mt-3'>自分の考えを視覚化できる</h3>
         <p>ピラミッドストラクチャーを使って情報を視覚化できます。<br>また、作成したピラミッドストラクチャーは編集することができます。</p>
         <details class="accordion py-1">
@@ -33,10 +34,27 @@
           ピラミッド上に主張と根拠を並べていくため、ピラミッドストラクチャーとよばれています。</p>
         </details>
       </div>
-      <div class="col-sm bg-body">
+      <div class="col-sm-5 bg-body shadow rounded">
         <h3 class='text-center mt-3'>例文を自動生成</h3>
-        <p>作成したメモの内容から1分以内で話すための例文が自動的に生成されます。<br>作成された例文は編集することができます。</p>
-        <div class="text-center"><%= image_tag 'memo_create', size: '400x267', alt: '例文作成画面', loading: "lazy" %></div>
+        <p>作成したメモの内容から1分以内で話すための例文が自動的に生成されます。<br>また、作成された例文は編集することができます。</p>
+        <div class="text-center">
+          <%= image_tag 'memo_create', style: 'width: 100%; height: auto;', alt: '例文作成画面', loading: "lazy" %>
+        </div>
+        <div class="text-center fs-1 text-danger my-3"><i class="bi bi-arrow-down-square-fill"></i></div>
+        <div class="text-center">
+          <%= image_tag 'example', style: 'width: 100%; height: auto;', alt: '作成された例文画面', loading: "lazy" %>
+        </div>
+      </div>
+      <div class="col-sm-5 bg-body shadow rounded">
+        <h3 class='text-center mt-3'>リマインダー機能</h3>
+        <p>予定日を設定すると、その予定の前日の午前9時に、登録されたメールアドレス宛にリマインダーメールが自動的に送信されます。</p>
+        <div class="text-center">
+          <%= image_tag 'reminder_mail', style: 'width: 100%; height: auto;', alt: 'リマインダーメール画面', loading: "lazy" %>
+        </div>
+        <p>さらに、リマインダーに登録したメモは、スケジュールカレンダーでいつでも簡単に確認できます。</p>
+        <div class="text-center">
+          <%= image_tag 'calendar', style: 'width: 100%; height: auto;', alt: 'スケジュールカレンダー', loading: "lazy" %>
+        </div>
       </div>
     </div>
   </div>
