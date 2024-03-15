@@ -28,10 +28,6 @@ AllCops:
 Metrics:
   Enabled: false
 
-# 一行あたりの文字数
-Layout/LineLength:
-  Enabled: false
-
 # メソッドの改行ルール
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
@@ -50,10 +46,6 @@ Style/ClassAndModuleChildren:
 
 # 文字列のfreeze（Ruby3からは自動でfreezeされるので要らない）
 Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# ガード節の提案（難しいので一旦false）
-Style/GuardClause:
   Enabled: false
 
 # 文字列のダブルクォートチェック

@@ -96,6 +96,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 RUN rm -f tmp/pids/server.pid
 
 # Start the server by default, this can be overwritten at runtime
-# 8080にする?
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
