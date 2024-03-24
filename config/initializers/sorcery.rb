@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:reset_password, :remember_me, :external]
+Rails.application.config.sorcery.submodules = %i[reset_password remember_me external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -134,12 +134,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.facebook.display = "page"
   # config.facebook.api_version = "v2.3"
   # config.facebook.parse = :json
-  #
-  # config.instagram.key = ""
-  # config.instagram.secret = ""
-  # config.instagram.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=instagram"
-  # config.instagram.user_info_mapping = {:email => "username"}
-  # config.instagram.access_permissions = ["basic", "public_content", "follower_list", "comments", "relationships", "likes"]
   #
   config.github.key = Rails.application.credentials.dig(:github, :key)
   config.github.secret = Rails.application.credentials.dig(:github, :secret)
