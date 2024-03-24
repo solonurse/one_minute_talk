@@ -9,12 +9,9 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace("bookmark-button-for-memo-#{@memo.id}", partial: "memos/unbookmark", locals: { memo: @memo }),
-          turbo_stream.replace("slidebar-bookmark-button-for-memo-#{@memo.id}", partial: "memos/slidebar/slidebar_unbookmark", locals: { memo: @memo }),
-          turbo_stream.replace("bookmarked-memo", partial: "memos/bookmarked_memo", locals: { bookmark_memos: @bookmark_memos }),
-          turbo_stream.replace("bookmarked-slidebar-memo", partial: "memos/slidebar/bookmarked_slidebar_memo", locals: { bookmark_memos: @bookmark_memos })
-        ]
+        render turbo_stream: respond_to_turbo_stream("bookmark-button-for-memo-#{@memo.id}",
+                                                     "memos/unbookmark",
+                                                     memo: @memo)
       end
     end
   end
@@ -26,13 +23,25 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace("unbookmark-button-for-memo-#{@memo.id}", partial: "memos/bookmark", locals: { memo: @memo }),
-          turbo_stream.replace("slidebar-unbookmark-button-for-memo-#{@memo.id}", partial: "memos/slidebar/slidebar_bookmark", locals: { memo: @memo }),
-          turbo_stream.replace("bookmarked-memo", partial: "memos/bookmarked_memo", locals: { bookmark_memos: @bookmark_memos }),
-          turbo_stream.replace("bookmarked-slidebar-memo", partial: "memos/slidebar/bookmarked_slidebar_memo", locals: { bookmark_memos: @bookmark_memos })
-        ]
+        render turbo_stream: respond_to_turbo_stream("unbookmark-button-for-memo-#{@memo.id}",
+                                                     "memos/bookmark",
+                                                     memo: @memo)
       end
     end
+  end
+
+  private
+
+  def respond_to_turbo_stream(path, partial, locals)
+    [turbo_stream.replace(path, partial:, locals:),
+     turbo_stream.replace("slidebar-#{path}",
+                          partial: "memos/slidebar/slidebar_#{partial.split('/').last}",
+                          locals:),
+     turbo_stream.replace("bookmarked-memo",
+                          partial: "memos/bookmarked_memo",
+                          locals: { bookmark_memos: @bookmark_memos }),
+     turbo_stream.replace("bookmarked-slidebar-memo",
+                          partial: "memos/slidebar/bookmarked_slidebar_memo",
+                          locals: { bookmark_memos: @bookmark_memos })]
   end
 end

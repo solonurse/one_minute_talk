@@ -14,12 +14,13 @@ RSpec.describe RemindMailer, type: :mailer do
 
     it 'メール本文が正しい' do
       RemindMailer.remind_event_email(reminder_later_day).deliver_now
+      last_email_body = ActionMailer::Base.deliveries.last.html_part.body.to_s
 
-      expect(ActionMailer::Base.deliveries.last.html_part.body.to_s).to have_content "こんにちは#{reminder_later_day.user.name}"
-      expect(ActionMailer::Base.deliveries.last.html_part.body.to_s).to have_content reminder_later_day.memo.title
-      expect(ActionMailer::Base.deliveries.last.html_part.body.to_s).to have_content reminder_later_day.memo.example.sentence
-      expect(ActionMailer::Base.deliveries.last.html_part.body.to_s).to have_content "開始予定日時：#{reminder_later_day.start_time.strftime('%Y/%m/%d %H:%M')}"
-      expect(ActionMailer::Base.deliveries.last.html_part.body.to_s).to have_link('詳細を確認する', href: memo_url(reminder_later_day.memo.id))
+      expect(last_email_body).to have_content "こんにちは#{reminder_later_day.user.name}"
+      expect(last_email_body).to have_content reminder_later_day.memo.title
+      expect(last_email_body).to have_content reminder_later_day.memo.example.sentence
+      expect(last_email_body).to have_content "開始予定日時：#{reminder_later_day.start_time.strftime('%Y/%m/%d %H:%M')}"
+      expect(last_email_body).to have_link('詳細を確認する', href: memo_url(reminder_later_day.memo.id))
     end
   end
 end

@@ -33,12 +33,15 @@ class ExplanationsController < ApplicationController
     @elements = params.select { |key, value| key.to_s.start_with?('element_') && value.present? }
   end
 
-  def element_checkbox_params
+  def checkbox_params
     # チェックボックスのキーを取得
     @checkbox_key = params.keys.select { |key| key.to_s.start_with?('checkbox_') && params[key].to_i == 1 }
     # チェックボックスのキーの数字を取得
     @checkbox_num = @checkbox_key.map { |key| key.to_s.gsub('checkbox_', '') }
+  end
 
+  def element_checkbox_params
+    checkbox_params
     # チェックボックスと同じ数字のelement_キーを取得
     @elements = {}
     index = 0

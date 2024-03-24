@@ -29,12 +29,12 @@ Metrics:
   Enabled: false
 
 # メソッドの改行ルール
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
+# Layout/MultilineMethodCallIndentation:
+#   EnforcedStyle: indented
 
 # 日本語にコメントを許可
-Style/AsciiComments:
-  Enabled: false
+# Style/AsciiComments:
+#   Enabled: false
 
 # クラスにコメントを残さなくても良い
 Style/Documentation:
@@ -53,30 +53,26 @@ Style/StringLiterals:
   Enabled: false
 
 # シンボルによる配列の%記法のチェック
-Style/SymbolArray:
-  Enabled: false
+# Style/SymbolArray:
+#   Enabled: false
   # EnforcedStyle: brackets
 
 # 文字列による配列の%記法のチェック
-Style/WordArray:
-  Enabled: false
+# Style/WordArray:
+#   Enabled: false
 
 # 変数名に数字を許可
 Naming/VariableNumber:
   Enabled: false
 
 # = と == の指摘
-Lint/AssignmentInCondition:
-  Enabled: false
+# Lint/AssignmentInCondition:
+#   Enabled: false
 
 # メソッド名等の命名の指摘
-Naming/PredicateName:
-  Enabled: false
+# Naming/PredicateName:
+#   Enabled: false
 
-# 未i18nのチェック（バリデーションエラーメッセージをi18nに登録するのはやや冗長？なためfalse）
+# 未i18nのチェック
 Rails/I18nLocaleTexts:
-  Enabled: false
-
-# before_actionの際の未定義メソッドのチェック（deviseとの兼ね合いで一旦false）
-Rails/LexicallyScopedActionFilter:
   Enabled: false
