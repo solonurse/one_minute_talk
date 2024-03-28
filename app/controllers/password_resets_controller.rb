@@ -32,7 +32,12 @@ class PasswordResetsController < ApplicationController
 
     # 確認用のパスワードが正しく入力されたかどうかを確認
     @user.password_confirmation = params[:user][:password_confirmation]
+    update_password
+  end
 
+  private
+
+  def update_password
     # 一時トークンをクリアし、パスワードを更新
     if @user.change_password(params[:user][:password])
       redirect_to login_path, success: t('.success')

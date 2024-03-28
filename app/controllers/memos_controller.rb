@@ -19,7 +19,6 @@ class MemosController < ApplicationController
     @register_memo_form = RegisterMemoForm.new
     @memo = @memos.find_by(id: params[:id])
     @title = @memo.title
-    @memo_explanations = @memo.explanations
     set_elements_and_basises
   end
 
@@ -63,8 +62,7 @@ class MemosController < ApplicationController
   end
 
   def example_sentence_info
-    example_data = @selected_memo&.example || { sentence: "" }
-    @example_sentence = example_data[:sentence]
+    @example_sentence = (@selected_memo&.example || { sentence: "" })[:sentence]
     @example_length = @example_sentence.length
     @speaking_time = (@example_length / 300.to_f * 60).round
   end
@@ -116,6 +114,7 @@ class MemosController < ApplicationController
   end
 
   def set_elements_and_basises
+    @memo_explanations = @memo.explanations
     @elements = {}
     @basises = {}
     3.times do |i|
