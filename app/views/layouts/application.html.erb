@@ -12,6 +12,16 @@
     <%= javascript_importmap_tags %>
 
     <%= display_meta_tags(default_mata_tags) %>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YPFNJKW8TF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YPFNJKW8TF');
+    </script>
   </head>
   <body>
     <% if logged_in? %>
